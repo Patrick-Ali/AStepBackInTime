@@ -1,0 +1,3 @@
+*.exe
+/__init__old.py
+__pycache__/

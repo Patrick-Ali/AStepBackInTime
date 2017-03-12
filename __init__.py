@@ -23,6 +23,44 @@ def login_required(f):
 def home():
 	return render_template("template.html")
 
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+	error = None
+	if request.method == 'POST':
+		firstname = request.form['firstname']
+		lastname = request.form['lastname']
+		email = request.form['email']
+		username = request.form['username']
+		password = request.form['password']
+
+		g.db = connect_db()
+		cur = g.db.execute('SELECT username, email FROM users')
+		data = cur.fetchall()
+
+		#Remove Else from for lop, create variable to check email and user
+
+		for row in data:
+			print(row[0])
+			print(row[1])
+			if row[0] == username:
+				g.db.close()
+				print(row[0])
+				error = 'Username already used'
+				break
+			elif row[1] == email:
+				g.db.close()
+				print(row[1])
+				error = 'Email alreaddy in use'
+				break
+			else:
+				g.db.execute('INSERT INTO users (firstname, lastname, email, username, password) VALUES (?,?,?,?,?);', \
+					(firstname, lastname, email, username, password))
+				g.db.commit()
+				g.db.close()
+				return redirect(url_for('login'))
+	else:
+		return render_template("register.html", error = error)
+
 @app.route('/login', methods=['GET','POST'])
 def login():
 	error = None
@@ -30,13 +68,15 @@ def login():
 		user = request.form['username']
 		password = request.form['password']
 		g.db = connect_db()
-		cur = g.db.execute('SELECT username, password FROM users')
+		cur = g.db.execute('SELECT id, username, password FROM users')
 		data = cur.fetchall()
 		for row in data:
-			if row[0] == user:
-				if row[1] == password:
+			if row[1] == user:
+				if row[2] == password:
 					g.db.close()
 					session["logged_in"] = True
+					session["id"] = row[0]
+					print(session["id"])
 					return redirect(url_for('home'))
 				else:
 					g.db.close()
@@ -54,10 +94,11 @@ def login():
 @login_required
 def logout():
 	session.pop("logged_in", None)
+	session.pop("id", None)
 	return redirect(url_for('home'))
 
 def connect_db():
 	return sqlite3.connect(app.database)
 
 if __name__ == "__main__":
-	app.run()
+	app.run(debug=True)

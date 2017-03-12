@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+
+{% block page %}Home{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div style="color: black;">
+<form method="post">
+  <label for="firstname">Forename:</label>
+  <input type="text" name="firstname">
+  <label for="lastname">Surname:</label>
+  <input type="text" name="lastname">
+  <label for="email">Email:</label>
+  <input type="email" name="email">
+  <label for="username">Username:</label>
+  <input type="text" name="username">
+  <label for="password">Password:</label>
+  <input type="password" name="password">
+  <label for="confirm">Confirm Password:</label>
+  <input type="password" name="confirm">
+  <input type="submit" name="submit">
+</form>
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

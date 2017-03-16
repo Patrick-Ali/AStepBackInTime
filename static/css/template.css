@@ -57,6 +57,15 @@ html, body{
 	display: none;
 }
 
+#ntext a{
+	text-decoration: none;
+	padding: 0.2em 1em;
+	text-align: center;
+	border-radius: 0.5em;
+	color: white;
+
+}
+
 .footer {
     position: absolute;
     bottom: 0;

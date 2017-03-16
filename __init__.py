@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash, g
+from flask import Flask, render_template, redirect, url_for, request, session, flash, g, make_response
 from flask_bootstrap import Bootstrap
 from functools import wraps
 import sqlite3
@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.secret_key = "yINaP31znTy8Uhq51?9cQD4u]0E0.E"
 app.database = "website.db"
 Bootstrap(app)
+#loggin = False
 
 def login_required(f):
 	@wraps(f)
@@ -20,8 +21,19 @@ def login_required(f):
 	return wrap
 
 @app.route("/")
-def home():
-	return render_template("template.html")
+def home(login=False):
+	#person = request.cookies.get('userID')
+	#user = request.cookies.get('userN')
+	#print(person)
+	if login != False:
+		user = session["username"]
+		print(user)
+		#redirect(url_for('home'))
+		return render_template("template.html", user = user)
+	else:
+		print("Hello")
+		#print(loggin)
+		return render_template("template.html", user = None)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -57,7 +69,10 @@ def register():
 					(firstname, lastname, email, username, password))
 				g.db.commit()
 				g.db.close()
-				return redirect(url_for('login'))
+				session["logged_in"] = True
+				session["id"] = row[0]
+				session["username"] = row[1]
+				return redirect(url_for('home'))
 	else:
 		return render_template("register.html", error = error)
 
@@ -66,18 +81,32 @@ def login():
 	error = None
 	if request.method == 'POST':
 		user = request.form['username']
+		print(user)
 		password = request.form['password']
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password FROM users')
 		data = cur.fetchall()
 		for row in data:
 			if row[1] == user:
+				print(user)
 				if row[2] == password:
+					#print(user)
 					g.db.close()
+					#print(user)
 					session["logged_in"] = True
 					session["id"] = row[0]
-					print(session["id"])
-					return redirect(url_for('home'))
+					session["username"] = row[1]
+					redirect(url_for('home'))
+					#uID = str(row[0])
+					#resp = make_response(redirect('/'))
+					#resp.set_cookie('userID', uID)
+					#resp.set_cookie('userN', user)
+					#print(resp)
+					#person = request.cookies.get('userID')
+					#print(person)
+					#loggin = True
+					return redirect(url_for('home'))#home(True)
+
 				else:
 					g.db.close()
 					error = 'Inccorect Password'
@@ -95,6 +124,8 @@ def login():
 def logout():
 	session.pop("logged_in", None)
 	session.pop("id", None)
+	session.pop("username", None)
+	#loggin = False
 	return redirect(url_for('home'))
 
 def connect_db():

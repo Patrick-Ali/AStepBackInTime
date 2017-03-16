@@ -4,7 +4,7 @@ var clickedTop = false;
 var clickedBottom = false;
 var clickedEmpire = false;
 var clickedLogin = false;
-var logg = document.getElementById("ltext");
+var logg = document.getElementById("arrow");
 var test = document.getElementById("top");
 var bottom = document.getElementById("bottom");
 var empire = document.getElementById("Empire");
@@ -29,13 +29,13 @@ clickedTop = false;
 function dropDownLoggedIn(){
 if(clickedLogin === false){
 document.getElementById("logExtra").style.display = "block";
-logg.innerHTML="UserName &#9650";
+logg.innerHTML="&#9650";
 clickedLogin = true;
 }
 else if(clickedLogin === true)
 {
 document.getElementById("logExtra").style.display = "none";
-logg.innerHTML="UserName &#x25BC";
+logg.innerHTML="&#x25BC";
 clickedLogin = false;
 }
 }

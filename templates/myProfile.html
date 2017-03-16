@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block page %}{{ user }} Profile{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div style="color: black;">
+<form method="post">
+  <label for="firstname">Forename:</label>
+  <input type="text" name="firstname" value="{{firstname}}">
+  <label for="lastname">Surname:</label>
+  <input type="text" name="lastname" value="{{lastname}}">
+  <label for="email">Email:</label>
+  <input type="email" name="email" value="{{email}}">
+  <label for="username">Username:</label>
+  <input type="text" name="username" value="{{username}}">
+  <label for="password">Password:</label>
+  <input type="password" name="password" value="{{password}}">
+  <input type="submit" name="submit">
+</form>
+
+<form action="/delete" method="post">
+<input type="submit" name="delete" value="delete profile">
+</form>
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

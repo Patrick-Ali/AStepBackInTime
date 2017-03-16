@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 
-{% block page %}Home{% endblock %}
+{% block page %}Register{% endblock %}
 {% block heading %}
   {{ super() }}
 {% endblock %}
@@ -8,19 +8,19 @@
 
 {% block content %}
 <div style="color: black;">
-<form method="post">
+<form action="/register" onsubmit="return validate()" method="post">
   <label for="firstname">Forename:</label>
-  <input type="text" name="firstname">
+  <input type="text" name="firstname" pattern="^[a-zA-Z]{5,}$" required>
   <label for="lastname">Surname:</label>
-  <input type="text" name="lastname">
+  <input type="text" name="lastname" pattern="^[a-zA-Z]{5,}$" required>
   <label for="email">Email:</label>
-  <input type="email" name="email">
+  <input type="email" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
   <label for="username">Username:</label>
-  <input type="text" name="username">
+  <input type="text" name="username" pattern="^[a-zA-Z0-9]{5,}$" required>
   <label for="password">Password:</label>
-  <input type="password" name="password">
+  <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}$" required>
   <label for="confirm">Confirm Password:</label>
-  <input type="password" name="confirm">
+  <input type="password" name="confirm" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}$" required>
   <input type="submit" name="submit">
 </form>
 {% if error %}

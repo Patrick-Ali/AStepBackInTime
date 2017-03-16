@@ -2,11 +2,27 @@ from flask import Flask, render_template, redirect, url_for, request, session, f
 from flask_bootstrap import Bootstrap
 from functools import wraps
 import sqlite3
+from itsdangerous import URLSafeTimedSerializer
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.secret_key = "yINaP31znTy8Uhq51?9cQD4u]0E0.E"
+app.SECURITY_PASSWORD_HASH = "sha512_crypt"
+app.SECURITY_PASSWORD_SALT = "xEjV.c8)!J30PF8X9ul0SwWk;|(4,7"
 app.database = "website.db"
 Bootstrap(app)
+
+app.config.update(
+	DEBUG=True,
+	#EMAIL SETTINGS
+	MAIL_SERVER='smtp.gmail.com',
+	MAIL_PORT=465,
+	MAIL_USE_SSL=True,
+	MAIL_USERNAME = 'patrick.ali345@gmail.com',
+	MAIL_PASSWORD = 'Black31road*'
+	)
+
+mail = Mail(app)
 
 def login_required(f):
 	@wraps(f)
@@ -18,6 +34,35 @@ def login_required(f):
 			flash("You must be logged in to access this.")
 			return redirect(url_for('login'))
 	return wrap
+
+#Real Python
+
+def generate_confirmation_token(email): #Generates random string for conformation
+    serializer = URLSafeTimedSerializer(app.secret_key)
+    return serializer.dumps(email, salt=app.SECURITY_PASSWORD_SALT) 
+
+
+def confirm_token(token, expiration=3600):#Gives the token a time to live, currently one hour
+    serializer = URLSafeTimedSerializer(app.secret_key)
+    try:
+        email = serializer.loads(
+            token,
+            salt=app.SECURITY_PASSWORD_SALT,
+            max_age=expiration
+        )#Checks that the token isn't dead
+    except:
+        return False
+    return email
+
+def send_email(to, subject, template):#Sends e-mail
+    msg = Message(
+        subject,
+        recipients=[to],
+        html=template,
+        sender="patrick.ali345@gmail.com")
+    mail.send(msg)
+
+#end Real Python
 
 @app.route("/")
 def home():
@@ -76,12 +121,41 @@ def register():
 			g.db.commit()
 			g.db.close()
 
+			token = generate_confirmation_token(email)
+			confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
+			html = render_template('/confirmEmail.html', confirm_url=confirm_url)
+			subject = "Please confirm your email"
+			send_email(email, subject, html)
+
+			#msg = Message(
+				#'Hello',
+				#sender='patrick.ali345@gmail.com',
+				#recipients=['alip@uni.coventry.ac.uk'])
+			#msg.body = "This is the email body"
+			#mail.send(msg)
 			
 			
 			return redirect(url_for('special', username = username))
 
 	else:
 		return render_template("register.html", error = error, user = user)
+
+@app.route('/confirm/<token>')
+def confirm(token):
+	try:
+		email = confirm_token(token)
+	except:
+		error = "Something went wrong with the email"
+		return redirect(url_for('login', error = error))
+	
+	g.db = connect_db()
+	ID = session["id"]
+	cur = g.db.execute('UPDATE users SET confirmed = (?) WHERE id =' + str(ID) + ';', (1,) )
+	g.db.commit()
+	g.db.close()
+
+	return redirect(url_for('home'))
+
 
 @app.route('/special/<username>')
 def special(username):

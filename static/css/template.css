@@ -31,6 +31,23 @@ html, body{
 	padding:0;
 }
 
+#user, #pass{
+	text-align: right;
+	padding-top: 0.5em;
+}
+
+#username{
+	margin-top: 0.5em;
+	color: black;
+
+}
+#password{
+	margin-left: 0.5%;
+	color: black;
+}
+#submit{
+	margin:;
+}
 
 .loggedIn{
 	display: block;

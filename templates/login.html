@@ -1,163 +1,33 @@
-<!DOCTYPE html>
-<html lang="en-GB">
+{% extends "template.html" %}
 
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="UTF-8">
-		<meta name="keywords" content="StepBack, Rome, Roman, Greek, Greece, Eygpt, Ancient, Empire">
-		<meta name="author" content="AStepBackInTime">
-		<meta name="description" content="Take a step back in time and see ancient empire rise and fall">
-		
-		<title>AStepBackInTime-</title>
-		
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% block page %}Register{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
 
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
-		<!-- Website Stylesheet -->
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/template.css')}}">
-		<link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.ico')}}">
-				
-	</head>
+{% block content %}
 
-	<body>
-		
-		<div class="container-fluid">
-
-		<!-- Header(logo, title, login menu), Row 1 -->
-		<div class="row">
-			<div id="topLog" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<ul id="login">
-				<p id="ntext"><a href="#">Login/Register</a></p>
-				<p id ="ltext" onclick="dropDownLoggedIn()">UserName ▼</p>
-				<div id="logExtra" style="display:none;">
-					<li class="loggedIn"><a href="#">My Profile</a></li>
-					<li class="loggedIn"><a href="#">Log Out</a></li>
-				</div>
-			</ul>
-			</div>
-		</div>
-
-		<div class="row">
-			<header>
-				<div id="header">
-					<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-					<a href="index.html"><img src="{{ url_for('static', filename='images/logo.png')}}" alt="A Step Back In Time Logo" id="logoImg"></a>
-					</div>
-					<div class="col-xs-7 col-sm-9 col-md-9 col-lg-9">
-					<h1 id="mtitle">A Step Back In Time</h1>
-					</div>
-				</div>
-			</header>
-		</div>
-
-		<!-- End Header -->
-
-		<!-- Navbar Top, Row 2 -->
-
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">
-			<nav id="navBar" class="">
-				<ul id="menuTop" class=""> 
-					<li><a href="index.html">Home</a></li>
-					<li onclick="dropDownEmpire()">
-					<p id="Empire"><a href="#">Ancient Empires ▼</a></p>
-					<ul id="empireList" class="hidden">
-						<li>Eygption</li>
-						<li>Greek</li>
-						<li>Roman</li>
-					</ul>
-					</li>
-					<li><a href="#">Quizes</a></li>
-				</ul>
-			</nav>
-			</div>
-
-			<div id="top" class="handle" onclick="dropDown()">Menu ▼</div>
-		</div>
-
-		<!-- End Navbar Top -->
-
-		<!-- Main Content, Row 3 -->
-
-		<div class="row">
-
-			<section id="main">
-				<h2>Login</h2>
 				<form method="post">
+					<div class = "row">
+					<div id = "user" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<label>Username</label>
-					<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}" id="username">
+					</div>
+					</div>
+					<div class = "row">
+					<div id = "pass" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<label>Password</label>
-					<input type="text" placeholder="Password" name="password" value="{{ request.form.password }}">
-					<input type="submit" name="submit">
-					{% if error %}
-						<p> {{ error }} </p>
-					{% endif %}
-				</form>
-			</section>
-
-
-		</div>
-
-		<!-- End main Content -->
-
-		</div>
-		
-		<!-- Footer Container -->
-
-		<footer class="footer">
-
-			<div class="container-fluid">
-			
-				<!-- Bottom Navbar, Row 1 -->
-				<div class="row">
-					<div id="bottom" class="handler col-md-12 col-lg-12" onclick="dropDownBottom()">More About Us ▼</div>
-								
-					<div id="footer" class="col-sm-12 col-md-12 col-lg-12">
-						<ul id="menuBottom" class="">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Contact Us</a></li>
-							<li><a href="#">Terms Of Use</a></li>
-							<li><a href="#">Privacy and Cookie Policy</a></li>
-							<li><a href="#">Site Map</a></li>
-						</ul>
 					</div>
-				</div>
-				<!-- End Bottom Navbar, Row 1 -->
-
-				<!-- Social Media, Row 2 -->
-				<div id="socialMedia" class="row">
-					<div class="col-sm-6 col-md-6 col-lg-6">
-						<img src="{{ url_for('static', filename='images/twitter.svg')}}" alt="Twitter Link" id="twitter">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<input type="text" placeholder="Password" name="password" value="{{ request.form.password }}" id="password">
 					</div>
-					<div class="col-sm-6 col-md-6 col-lg-6">
-						<img src="{{ url_for('static', filename='images/facebook.svg')}}" alt="Facebook Link" id="facebook">
 					</div>
-				</div>
-				<!-- End Social Media, Row 2 -->
-
-				<!-- Copy Right, Row 3 -->
-				<div class="row">
-					<div id="copyright" class="col-sm-12 col-md-12 col-lg-12">
-						<p>© A Step Back In Time 2017</p>
-					</div>
-				</div>
-				<!-- End Copy Right, Row 3 -->
-
-			</div>
-
-
-		</footer>
-	
-		<!-- End Footer Container -->
-		
-
-		<script type="text/javascript" src="{{ url_for('static', filename='js/template.js')}}"> </script>
-	</body>
-
-</html>
+					<input type="submit" name="submit" id ="submit">
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

@@ -7,4 +7,8 @@ with sqlite3.connect("website.db") as connection:
 		#password TEXT NOT NULL) """)
 	#c.execute('INSERT INTO users (firstname, lastname, email, username, password)VALUES("Patrick", "Ali", "test@gmail.com", "admin", "password")')
 	
-	c.execute('ALTER TABLE users ADD confirmed INTEGER NOT NULL DEFAULT 0; ')
+	#c.execute('ALTER TABLE users ADD confirmed INTEGER NOT NULL DEFAULT 0; ')
+
+	c.execute("""CREATE TABLE rome( \
+		id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, \
+		FOREIGN KEY(userID) REFERENCES users(id)  );""")

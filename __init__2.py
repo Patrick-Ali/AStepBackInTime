@@ -74,6 +74,24 @@ def home():
 		#print("Hello")
 		return render_template("template.html", user = None)
 
+@app.route("/rome_quiz", methods=['GET', 'POST'])
+def romeQuiz():
+	if request.method == 'POST':
+		score = request.form['score']
+		uID = session['id']
+
+		g.db = connect_db()
+		cur = g.db.execute('INSERT INTO rome (userID, score) VALUES (?,?);', (uID, score))
+		g.db.commit()
+		g.db.close()
+
+		return render_template("rome_quiz.html")
+	else:
+		return render_template("rome_quiz.html")
+
+
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
 

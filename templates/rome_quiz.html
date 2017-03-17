@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 
-{% block page %}Login{% endblock %}
+{% block page %}Rome Quiz{% endblock %}
 {% block heading %}
   {{ super() }}
 {% endblock %}
@@ -10,11 +10,12 @@
 
 				<form method="post">
 					<div class = "row">
-					<div id = "user" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					<label>Username</label>
+					<div id = "q1" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="king">Who was the first emporer</label>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}" id="username">
+					<input type="radio" name="king" value="romulus" class="radio">Romulus
+					<input type="radio" name="king" value="remus" class="radio">Remus
 					</div>
 					</div>
 					<div class = "row">
@@ -27,7 +28,7 @@
 					</div>
 					<input type="submit" name="submit" id ="submit">
 					</form>
-					<p><a href="\register">Register</a></p>
+
 
 {% if error %}
   <p> {{ error }} </p>

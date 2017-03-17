@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 
-{% block page %}Register{% endblock %}
+{% block page %}Login{% endblock %}
 {% block heading %}
   {{ super() }}
 {% endblock %}
@@ -26,6 +26,8 @@
 					</div>
 					</div>
 					<input type="submit" name="submit" id ="submit">
+					</form>
+					<p><a href="\register">Register</a><p>
 {% if error %}
   <p> {{ error }} </p>
 {% endif %}

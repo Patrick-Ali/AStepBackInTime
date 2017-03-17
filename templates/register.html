@@ -8,21 +8,62 @@
 
 {% block content %}
 <div style="color: black;">
-<form action="/register" onsubmit="return validate()" method="post">
+<form action="/register" onsubmit="return(validate());" name="register" method="post">
+  <div class = "row">
+  <div id = "firstname" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="firstname">Forename:</label>
-  <input type="text" name="firstname" pattern="^[a-zA-Z]{5,}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="text" name="firstname" pattern="^[a-zA-Z]{1,}$" id="forename" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "lastname" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="lastname">Surname:</label>
-  <input type="text" name="lastname" pattern="^[a-zA-Z]{5,}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="text" name="lastname" pattern="^[a-zA-Z]{1,}$" id="surname" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "lemail" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="email">Email:</label>
-  <input type="email" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="email" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "lusername" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="username">Username:</label>
-  <input type="text" name="username" pattern="^[a-zA-Z0-9]{5,}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="text" name="username" pattern="^[a-zA-Z0-9]{5,}$" id="username" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "lpassword" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="password">Password:</label>
-  <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="password" name="password" id="password" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "lconfirm" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <label for="confirm">Confirm Password:</label>
-  <input type="password" name="confirm" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}$" required>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <input type="password" name="confirm" id="confirm" required>
+  </div>
+  </div>
+  <div class = "row">
+  <div id = "submit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <input type="submit" name="submit">
+  </div>
+  </div>
 </form>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/validate.js')}}"> </script>
 {% if error %}
   <p> {{ error }} </p>
 {% endif %}

@@ -31,7 +31,7 @@ html, body{
 	padding:0;
 }
 
-#user, #pass{
+#user, #pass, #firstname, #lastname, #lemail, #lusername, #lpassword, #lconfirm{
 	text-align: right;
 	padding-top: 0.5em;
 }

@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+
+{% block page %}Loading{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div id="holder">
+    <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+      0%
+  </div>
+
+<script>    
+    window.onload= function upload(){
+      var width = 1;
+      var c = document.getElementById("progress");
+      //console.log(c);
+      var speed = 100;
+      var id = setInterval(function(){frame(c)},speed);
+      function frame(c) {
+        if(width == 100){
+          window.location.href = "http://127.0.0.1:5000/rome_quiz";
+        }
+        else{
+          width++;
+          //console.log(width);
+          c.style.width = width + '%';
+          //var temp =  document.getElementById("progress");
+          var v = c.getAttribute("aria-valuenow");
+          v = parseInt(v);  
+          //console.log(v); 
+          v += 1;
+          //console.log(v);
+          v = v.toString();
+          c.innerHTML = v + "%";  
+          c.setAttribute("aria-valuenow", v);
+        }
+          
+        }
+      };
+      
+    </script> 
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+
+{% endblock %}

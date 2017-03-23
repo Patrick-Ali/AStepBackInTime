@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+
+{% block page %}Rome Quiz{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+{% for row in data%}
+	
+	<p> Socre {{ row[0] }} on {{ row[1] }} </p>
+
+{% endfor %}
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+
+{% endblock %}

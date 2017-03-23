@@ -100,6 +100,11 @@ def home():
 @app.route("/rome_quiz", methods=['GET', 'POST'])
 def romeQuiz():
 
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+
 	form = RomeQuiz()
 
 	if request.method == 'POST':
@@ -111,13 +116,40 @@ def romeQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("rome_quiz.html", form = form)
+		return render_template("loading.html", form = form, user = user)
 	else:
-		return render_template("rome_quiz.html", form = form)
+		return render_template("rome_quiz.html", form = form, user = user)
+
+@app.route("/complete_rome", methods=['GET', 'POST'])
+def complete():
+
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+
+	g.db = connect_db()
+	ID = session["id"]
+	print(ID)
+	cur = g.db.execute('SELECT score, dateDone FROM rome WHERE userID =' + str(ID) + ' ORDER BY score;')
+	data = cur.fetchall()
+	for row in data:
+		print(row[0])
+		print(row[1])
+	g.db.close()
+
+	return render_template("complete_rome.html", data = data, user = user)
+	
 
 @app.route("/loading")
 def loading():
-	return render_template("loading.html")
+
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+
+	return render_template("loading.html", user = user)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -254,7 +286,7 @@ def myProfile():
 		g.db = connect_db()
 		ID = int(session["id"])
 		#ID = 8
-		print(ID)
+		#print(ID)
 		cur = g.db.execute('UPDATE users SET firstname = (?), lastname = (?), email = (?), username = (?), password = (?) WHERE id =' + str(ID) + ';', \
 		(firstname, lastname, email, username, password) )
 
@@ -266,7 +298,7 @@ def myProfile():
 	else:
 		g.db = connect_db()
 		ID = session["id"]
-		print(ID)
+		#print(ID)
 		cur = g.db.execute('SELECT firstname, lastname, email, username, password FROM users WHERE id = ' + str(ID) + ';')
 		data = cur.fetchall()
 

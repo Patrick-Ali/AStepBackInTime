@@ -9,6 +9,20 @@ with sqlite3.connect("website.db") as connection:
 	
 	#c.execute('ALTER TABLE users ADD confirmed INTEGER NOT NULL DEFAULT 0; ')
 
+	#c.execute("""CREATE TABLE rome( \
+		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, \
+		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+
+	#c.execute("""CREATE TABLE eygpt( \
+		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
+		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+	
+	#c.execute('INSERT INTO eygpt (userID, score)VALUES(7, 10);')		
+
+	#c.execute('ALTER TABLE rome ADD dateDone NUMBER DEFAULT CURRENT_TIMESTAMP; ')
+
+	c.execute('DROP TABLE rome;') 
+
 	c.execute("""CREATE TABLE rome( \
-		id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, \
+		id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
 		FOREIGN KEY(userID) REFERENCES users(id)  );""")

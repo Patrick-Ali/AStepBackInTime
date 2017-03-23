@@ -15,54 +15,64 @@ function romeCheck(){
 
 	if(document.getElementById('q1-0').checked){
 		newScore++;
+		console.log("q1 check");
 		score.value = newScore;
 	}
 
 	if(document.getElementById('q2-0').checked){
 		newScore++;
+		console.log("q2 check");
 		score.value = newScore;
 	}
 
 	if(document.getElementById('q3-0').checked && document.getElementById('q3-1').checked){
 		newScore++;
+		console.log("q3 check");
 		score.value = newScore;
 	}
 
-	if(q4 == "Alps" || q4 == "alps"){
+	if(q4.value == "Alps" || q4.value == "alps"){
 		newScore++;
+		console.log("q4 check");
 		score.value = newScore;
 	}
 
 	if(document.getElementById('q5-0').checked){
 		newScore++;
+		console.log("q5 check");
 		score.value = newScore;
 	}
 
 	if(document.getElementById('q6-1').checked){
 		newScore++;
+		console.log("q6 check");
 		score.value = newScore;
 	}
 
-	if(q7 == "Great" || q7 == "great"){
+	if(q7.value == "Great" || q7.value == "great"){
 		newScore++;
+		console.log("q7 check");
 		score.value = newScore;
 	}
 
 	if(document.getElementById('q8-0').checked && document.getElementById('q8-2').checked){
 		newScore++;
+		console.log("q8 check");
 		score.value = newScore;
 	}
 
-	if(q9 == "Cleopatra" || q9 == "cleopatra"){
+	if(q9.value == "Cleopatra" || q9.value == "cleopatra"){
 		newScore++;
+		console.log("q9 check");
 		score.value = newScore;
 	}
 
-	if(q10 == "Brutus" || q10 == "brutus"){
+	if(q10.value == "Brutus" || q10.value == "brutus"){
 		newScore++;
+		console.log("q10 check");
 		score.value = newScore;
 	}
 
-	return True;
+	return true;
 
 }

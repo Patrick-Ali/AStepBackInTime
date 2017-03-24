@@ -97,6 +97,16 @@ def home():
 		#print("Hello")
 		return render_template("template.html", user = None)
 
+@app.route("/quiz")
+def quiz():
+	if "username" in session:
+		user = session["username"]
+		#print(user)
+		return render_template("quiz.html", user = user)
+	else:
+		#print("Hello")
+		return render_template("quiz.html", user = None) 
+
 @app.route("/rome")
 def rome():
 	if "username" in session:

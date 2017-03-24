@@ -97,6 +97,36 @@ def home():
 		#print("Hello")
 		return render_template("template.html", user = None)
 
+@app.route("/rome")
+def rome():
+	if "username" in session:
+		user = session["username"]
+		#print(user)
+		return render_template("rome.html", user = user)
+	else:
+		#print("Hello")
+		return render_template("rome.html", user = None)
+
+@app.route("/macedonia")
+def macedonia():
+	if "username" in session:
+		user = session["username"]
+		#print(user)
+		return render_template("macedonia.html", user = user)
+	else:
+		#print("Hello")
+		return render_template("macedonia.html", user = None)
+
+@app.route("/eygpt")
+def eygpt():
+	if "username" in session:
+		user = session["username"]
+		#print(user)
+		return render_template("eygpt.html", user = user)
+	else:
+		#print("Hello")
+		return render_template("eygpt.html", user = None)
+
 @app.route("/rome_quiz", methods=['GET', 'POST'])
 def romeQuiz():
 
@@ -131,7 +161,7 @@ def complete():
 	g.db = connect_db()
 	ID = session["id"]
 	print(ID)
-	cur = g.db.execute('SELECT score, dateDone FROM rome WHERE userID =' + str(ID) + ' ORDER BY score;')
+	cur = g.db.execute('SELECT score, dateDone FROM rome WHERE userID =' + str(ID) + ' ORDER BY score, dateDone DESC;')
 	data = cur.fetchall()
 	for row in data:
 		print(row[0])

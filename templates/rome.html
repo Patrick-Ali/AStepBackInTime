@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+
+{% block page %}Rome{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+<article class="land">
+	<div class="land-inner">
+		<h2>Republic-Empire</h2>
+	</div>
+</article>
+<article class="army">
+	<div class="army-inner">
+		<h2>The conquerors</h2>
+	</div>
+</article>
+<article class="religon">
+	<div class="religon-inner">
+		<h2>Religion</h2>
+	</div>
+</article>
+<article class="sport">
+	<div class="sport-inner">
+		<h2>Sport</h2>
+	</div>
+</article>
+<article class="food">
+	<div class="food-inner">
+		<h2>Fine Dining</h2>
+	</div>
+</article>	
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

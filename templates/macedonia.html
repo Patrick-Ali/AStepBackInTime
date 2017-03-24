@@ -1,34 +1,41 @@
-<!Doctype html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="parallaxTest.css">
-	<title>Test Image Scroll</title>
-</head>
-<body>
-<article class="land">
+{% extends "template.html" %}
+
+{% block page %}Macedonia{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+<article class="landM">
 	<div class="land-inner">
 		<h2>Republic-Empire</h2>
 	</div>
 </article>
-<article class="army">
+<article class="armyM">
 	<div class="army-inner">
 		<h2>The conquerors</h2>
 	</div>
 </article>
-<article class="religon">
+<article class="religonM">
 	<div class="religon-inner">
 		<h2>Religion</h2>
 	</div>
 </article>
-<article class="sport">
+<article class="sportM">
 	<div class="sport-inner">
 		<h2>Sport</h2>
 	</div>
 </article>
-<article class="food">
+<article class="foodM">
 	<div class="food-inner">
 		<h2>Fine Dining</h2>
 	</div>
 </article>	
-</body>
-</html>
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

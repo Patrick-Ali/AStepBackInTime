@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+
+{% block page %}Eygpt{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+<article class="landE">
+	<div class="land-inner">
+		<h2>Republic-Empire</h2>
+	</div>
+</article>
+<article class="armyE">
+	<div class="army-inner">
+		<h2>The conquerors</h2>
+	</div>
+</article>
+<article class="religonE">
+	<div class="religon-inner">
+		<h2>Religion</h2>
+	</div>
+</article>
+<article class="sportE">
+	<div class="sport-inner">
+		<h2>Sport</h2>
+	</div>
+</article>
+<article class="foodE">
+	<div class="food-inner">
+		<h2>Fine Dining</h2>
+	</div>
+</article>	
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

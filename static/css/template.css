@@ -246,6 +246,8 @@ html, body{
 	margin-bottom: 1em;
 	position: relative;
 	background-color: #9d693d /*#78909C*/;
+	/*position: relative;
+	z-index: 13;*/
 }
 
 #upper:after{
@@ -274,6 +276,8 @@ html, body{
 	padding: 0.6em;
 	height: 5em;
 	background-color: #9d693d /*#00838F*/;
+	/*position: relative;
+	z-index: -1;*/
 }
 
 #logoImg{
@@ -443,6 +447,8 @@ nav ul li a {
 		max-height: 0;
 		border: 0;
 		background-color: #8a6544;
+		opacity: 0;
+		transition: opacity 1s ease;
 	}
 	
 	nav ul{
@@ -450,6 +456,8 @@ nav ul li a {
 		margin: 0;
 		padding: 0;
 		border: 0;
+		opacity: 0;
+		transition: opacity 1s ease;
 	}
 	
 	nav ul li a{
@@ -464,9 +472,11 @@ nav ul li a {
 	}
 	
 	.shower{
+		opacity: 1 !important;
 		max-height: 20em;
 	}
 	.showing{
+		opacity: 1 !important;
 		max-height: 20em; 
 	}
 	
@@ -494,8 +504,10 @@ nav ul li a {
 		border: 0;
 		margin: 0;
 		padding: 0;
+		opacity: 0;
 		background-color: #8a6544;
 		color: white;
+		transition: opacity 1s ease;
 	}
 	
 	footer #footer ul{
@@ -503,6 +515,8 @@ nav ul li a {
 		margin: 0;
 		padding: 0;
 		border: 0;
+		opacity: 0;
+		transition: opacity 1s ease;
 	}
 	
 	footer #footer ul li a{
@@ -517,9 +531,12 @@ nav ul li a {
 	}
 	
 	.show{
-		max-height: 20em !important; 
+		opacity: 1 !important;
+		max-height: 20em !important;
+		transition: opacity 1s ease !important; 
 	}
-	
+
+
 	.handler{
 		display: block;
 	}

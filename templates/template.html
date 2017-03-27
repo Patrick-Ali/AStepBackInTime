@@ -22,10 +22,6 @@
 		<!-- Website Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/template.css')}}">
 		<link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.ico')}}">
-				
-	</head>
-
-	<body>
 
 		{% if user == None %}
 		<style type="text/css">
@@ -49,7 +45,12 @@
 		</style>
 
 		{% endif %}
-		
+				
+	</head>
+
+	<body>
+
+
 		<div class="container-fluid" id="topCon">
 
 		<div id="upper" >	

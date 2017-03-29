@@ -8,7 +8,7 @@
 
 {% block content %}
 	
-				<form method="post" onsubmit="return(romeCheck());">
+				<form method="post" onsubmit="return(eqyptCheck());">
 				{{ form.hidden_tag() }}
 				<input type="hidden" name="score" id="score" value=0>
 				<div class="form-group">
@@ -58,7 +58,7 @@
 				</div>
 					</form>
 
- <script type="text/javascript" src="{{ url_for('static', filename='js/romeCheck.js')}}"> </script>
+ <script type="text/javascript" src="{{ url_for('static', filename='js/egyptCheck.js')}}"> </script>
 
 {% if error %}
   <p> {{ error }} </p>

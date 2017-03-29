@@ -21,7 +21,7 @@ with sqlite3.connect("website.db") as connection:
 
 	#c.execute('ALTER TABLE rome ADD dateDone NUMBER DEFAULT CURRENT_TIMESTAMP; ')
 
-	c.execute('DROP TABLE egypt;') 
+	#c.execute('DROP TABLE egypt;') 
 
 	#c.execute("""CREATE TABLE rome( \
 		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
@@ -34,3 +34,5 @@ with sqlite3.connect("website.db") as connection:
 	#c.execute("""CREATE TABLE egypt( \
 		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
 		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+
+	c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)

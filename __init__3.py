@@ -14,46 +14,46 @@ class MultiCheckboxField(SelectMultipleField):
 
 class RomeQuiz(Form):
 	#b1String = ['']
-	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])
-	q2 = RadioField("When was Rome founded", choices = [("720","720"),("850","850"),("600","600")])
-	q3 = MultiCheckboxField("Which two groups sacked Rome", choices = [("Gauls","Gauls"),("Visigoths","Visigoths"),("Carthaginians", "Carthaginians"),("Greeks","Greeks")])
-	q4 = TextField("What famous mountains did Hannable cross")
-	q5 = RadioField("Who was the first king of Rome", choices = [("Augustus Ceaser","Augustus Ceaser"),("Julius Ceaser","Julius Ceaser"),("Nero","Nero"),("Trajan","Trajan")])
-	q6 = RadioField("When was Rome founded", choices = [("45","45"),("30","30"),("100","100")])
-	q7 = TextField("Ceaser's rival during the civil war was Pompey the")
-	q8 = MultiCheckboxField("Select all correct provinces of the Roman empire", choices=[("Aegyptus","Aegyptus"),("Germania","Germania"),("Britannia", "Britannia"),("Greece","Greece")])
-	q9 = TextField("Who was Mark Anthony's most famous lover")
-	q10 = TextField("Which member of Julius Ceasers family infamously helped assassinate him")
+	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])#Romulus
+	q2 = RadioField("When was Rome founded", choices = [("753","753"),("850","850"),("600","600")])#753
+	q3 = MultiCheckboxField("Which two groups sacked Rome", choices = [("Gauls","Gauls"),("Visigoths","Visigoths"),("Carthaginians", "Carthaginians"),("Greeks","Greeks")])#Gauls and Visigoths
+	q4 = TextField("What famous mountains did Hannibal cross")#Alps
+	q5 = RadioField("Who was the first king of Rome", choices = [("Augustus Caesar","Augustus Caesar"),("Julius Caesar","Julius Caesar"),("Nero","Nero"),("Trajan","Trajan")])#Augustus Caesar
+	q6 = RadioField("When was Rome founded", choices = [("45","45"),("27","27"),("100","100")])#27
+	q7 = TextField("Caesar's rival during the civil war was Pompey the")#Great
+	q8 = MultiCheckboxField("Select all correct provinces of the Roman empire", choices=[("Aegyptus","Aegyptus"),("Germania","Germania"),("Britannia", "Britannia"),("Greece","Greece")])#Aegyptus and Britannia
+	q9 = TextField("Who was Mark Anthony's most famous lover")#Cleopatra
+	q10 = TextField("Which member of Julius Caesar's family infamously helped assassinate him")#Brutus
 
 	submit = SubmitField("Grade")
 
 class EygptQuiz(Form):
 	#b1String = ['']
-	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])
-	q2 = RadioField("When was Rome founded", choices = [("720","720"),("850","850"),("600","600")])
-	q3 = MultiCheckboxField("Which two groups sacked Rome", choices = [("Gauls","Gauls"),("Visigoths","Visigoths"),("Carthaginians", "Carthaginians"),("Greeks","Greeks")])
-	q4 = TextField("What famous mountains did Hannable cross")
-	q5 = RadioField("Who was the first king of Rome", choices = [("Augustus Ceaser","Augustus Ceaser"),("Julius Ceaser","Julius Ceaser"),("Nero","Nero"),("Trajan","Trajan")])
-	q6 = RadioField("When was Rome founded", choices = [("45","45"),("30","30"),("100","100")])
-	q7 = TextField("Ceaser's rival during the civil war was Pompey the")
-	q8 = MultiCheckboxField("Select all correct provinces of the Roman empire", choices=[("Aegyptus","Aegyptus"),("Germania","Germania"),("Britania", "Britania"),("Grecce","Grecce")])
-	q9 = TextField("Who was Mark Anthony's most famous lover")
-	q10 = TextField("Which member of Julius Ceasers family infamously helped assassinate him")
+	q1 = RadioField("Who was the first king of Egypt", choices = [("Ramses","Ramses"),("Narmer","Narmer")])#Narmer
+	q2 = RadioField("Which is the capital of ancient Egypt", choices = [("Alexandra","Alexandra"),("Memphis","Memphis"),("Cairo","Cairo")])#Memphis
+	q3 = MultiCheckboxField("Which two groups were rivals of ancient Egypt", choices = [("Canaanites","Canaanites"),("Rome","Rome"),("Nubians", "Nubians"),("Persia","Persia")])#Canaanites and Nubians
+	q4 = TextField("What famous river runs through Egypt")#Nile
+	q5 = RadioField("What was ancient Egypt's paper called", choices = [("Papyrus","Papyrus"),("Reed","Reed"),("Stone","Stone"),("Clay","Clay")])#Papyrus
+	q6 = RadioField("When was the ancient Egyptian kingdom believed to have been founded founded", choices = [("3100","3100"),("2900","2900"),("5000","5000")])#3100
+	q7 = TextField("Complete the title of this famous ruler, Tutan") #khamun
+	q8 = MultiCheckboxField("Which two kingdoms united to form ancient Egypt?", choices=[("Upper Egypt","Upper Egypt"),("Judea","Judea"),("Sudan", "Sudan"),("Lower Egypt","Lower Egypt")])# Upper and Lower Egypt
+	q9 = TextField("What are is the famous last resting places of Egypt's ancient rulers?")#Valley of the kings
+	q10 = TextField("Who famously parted the Red sea?")#Moses
 
 	submit = SubmitField("Grade")
 
 class MacedoniaQuiz(Form):
 	#b1String = ['']
-	q1 = RadioField("Who was the first king of Rome", choices = [("Karanos","Karanos"),("Alexander","Alexander")])
-	q2 = RadioField("When was Aigai supposedly founded", choices = [("808","808"),("399","399"),("500","500")])
-	q3 = MultiCheckboxField("Which two cities did Alexander famously raze to the ground", choices = [("Massaga","Massaga"),("Athens","Athens"),("Gaza", "Gaza"),("Thebes","Thebes")])
-	q4 = TextField("What was the name of Alexander's farther")
-	q5 = RadioField("Which province of Alexander's empire proclaimed him a God", choices = [("Egypt","Egypt"),("Persia","Persia"),("Greece","Greece"),("India","India")])
-	q6 = RadioField("When did Alexander come to the thrown", choices = [("336","336"),("323","323"),("350","350")])
+	q1 = RadioField("Who was the first king of Macedonia", choices = [("Karanos","Karanos"),("Alexander","Alexander")])#Karanos
+	q2 = RadioField("When was Aigai supposedly founded", choices = [("808","808"),("399","399"),("500","500")])#808
+	q3 = MultiCheckboxField("Which two cities did Alexander famously raze to the ground", choices = [("Massaga","Massaga"),("Athens","Athens"),("Gaza", "Gaza"),("Thebes","Thebes")])#Massaga and Thebes
+	q4 = TextField("What was the name of Alexander's farther")#Philip
+	q5 = RadioField("Which province of Alexander's empire proclaimed him a God", choices = [("Egypt","Egypt"),("Persia","Persia"),("Greece","Greece"),("India","India")])# Egypt
+	q6 = RadioField("When did Alexander come to the thrown", choices = [("336","336"),("323","323"),("350","350")])#336
 	q7 = TextField("Alexander was given the grand title of") #King of Asia
-	q8 = MultiCheckboxField("Select all correct provinces of the Alexanders kingdom", choices=[("Egypt","Egypt"),("Italia","Italia"),("Hispania", "Hispania"),("Persia","Persia")])
-	q9 = TextField("What was the name of Alexander the greats successor")
-	q10 = TextField("How old was Alexander when he died")
+	q8 = MultiCheckboxField("Select all correct provinces of the Alexanders kingdom", choices=[("Egypt","Egypt"),("Italia","Italia"),("Hispania", "Hispania"),("Persia","Persia")])# Egypt and Persia
+	q9 = TextField("What was the name of Alexander the greats successor")# Alexander IV
+	q10 = TextField("How old was Alexander when he died")#32
 
 	submit = SubmitField("Grade")
 
@@ -228,7 +228,7 @@ def egyptQuiz():
 		uID = session['id']
 
 		g.db = connect_db()
-		cur = g.db.execute('INSERT INTO rome (userID, score) VALUES (?,?);', (uID, score))
+		cur = g.db.execute('INSERT INTO eygpt (userID, score) VALUES (?,?);', (uID, score))
 		g.db.commit()
 		g.db.close()
 

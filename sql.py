@@ -35,4 +35,4 @@ with sqlite3.connect("website.db") as connection:
 		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
 		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
 
-	c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)
+	#c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)

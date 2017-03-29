@@ -12,37 +12,55 @@
   <div class = "form-group">
   <label class="control-label col-sm-2" for="firstname">Forename:</label>
   <div class="col-sm-10">
-  <input type="text" name="firstname" class="form-control" pattern="^[a-zA-Z]{1,}$" id="forename" placeholder="Forename" required>
+  <input type="text" name="firstname" class="form-control" pattern="^[a-zA-Z]{1,}$" id="forename" placeholder="Forename" oninput="forenameValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="forError"></p>
   </div>
   </div>
   <div class = "form-group">
   <label class="control-label col-sm-2" for="lastname">Surname:</label>
   <div class="col-sm-10">
-  <input class="form-control" type="text" name="lastname" pattern="^[a-zA-Z]{1,}$" id="surname" placeholder="Surname" required>
+  <input class="form-control" type="text" name="lastname" pattern="^[a-zA-Z]{1,}$" id="surname" placeholder="Surname" oninput="surnameValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="surError"></p>
   </div>
   </div>
   <div class = "form-group">
   <label class="control-label col-sm-2" for="email">Email:</label>
   <div class="col-sm-10">
-  <input type="email" class="form-control" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" placeholder="Email" required>
+  <input type="email" class="form-control" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" placeholder="Email" oninput="emailValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="emError"></p>
   </div>
   </div>
   <div class = "form-group">
   <label class="control-label col-sm-2" for="username">Username:</label>
   <div class="col-sm-10">
-  <input type="text" class="form-control" name="username" pattern="^[a-zA-Z0-9]{5,}$" id="username" placeholder="Username" required>
+  <input type="text" class="form-control" name="username" pattern="^[a-zA-Z0-9]{5,}$" id="username" placeholder="Username" oninput="usernameValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="userError"></p>
   </div>
   </div>
   <div class = "form-group">
   <label class="control-label col-sm-2" for="password">Password:</label>
   <div class="col-sm-10">
-  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+  <input type="password" class="form-control" name="password" id="password" placeholder="Password" oninput="passwordValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="paError"></p>
   </div>
   </div>
   <div class="form-group">
   <label class="control-label col-sm-2" for="confirm">Confirm Password:</label>
   <div class="col-sm-10">
-  <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
+  <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" oninput="confirmValidate()" required>
+  </div>
+  <div class="col-sm-10">
+    <p id="conError"></p>
   </div>
   </div>
   <div class = "form-group">

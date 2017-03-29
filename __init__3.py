@@ -8,12 +8,13 @@ from flask_wtf import Form
 #from flask.ext.wtf import Form, widgets
 from wtforms import SubmitField, SelectField, RadioField, BooleanField, TextField, HiddenField, SelectMultipleField, widgets
 
+#Following taken from https://gist.github.com/doobeh/4668212
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
+#End
 
 class RomeQuiz(Form):
-	#b1String = ['']
 	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])#Romulus
 	q2 = RadioField("When was Rome founded", choices = [("753","753"),("850","850"),("600","600")])#753
 	q3 = MultiCheckboxField("Which two groups sacked Rome", choices = [("Gauls","Gauls"),("Visigoths","Visigoths"),("Carthaginians", "Carthaginians"),("Greeks","Greeks")])#Gauls and Visigoths
@@ -28,7 +29,6 @@ class RomeQuiz(Form):
 	submit = SubmitField("Grade")
 
 class EygptQuiz(Form):
-	#b1String = ['']
 	q1 = RadioField("Who was the first king of Egypt", choices = [("Ramses","Ramses"),("Narmer","Narmer")])#Narmer
 	q2 = RadioField("Which is the capital of ancient Egypt", choices = [("Alexandra","Alexandra"),("Memphis","Memphis"),("Cairo","Cairo")])#Memphis
 	q3 = MultiCheckboxField("Which two groups were rivals of ancient Egypt", choices = [("Canaanites","Canaanites"),("Rome","Rome"),("Nubians", "Nubians"),("Persia","Persia")])#Canaanites and Nubians
@@ -43,7 +43,6 @@ class EygptQuiz(Form):
 	submit = SubmitField("Grade")
 
 class MacedoniaQuiz(Form):
-	#b1String = ['']
 	q1 = RadioField("Who was the first king of Macedonia", choices = [("Karanos","Karanos"),("Alexander","Alexander")])#Karanos
 	q2 = RadioField("When was Aigai supposedly founded", choices = [("808","808"),("399","399"),("500","500")])#808
 	q3 = MultiCheckboxField("Which two cities did Alexander famously raze to the ground", choices = [("Massaga","Massaga"),("Athens","Athens"),("Gaza", "Gaza"),("Thebes","Thebes")])#Massaga and Thebes
@@ -59,10 +58,12 @@ class MacedoniaQuiz(Form):
 
 
 app = Flask(__name__)
+
 app.secret_key = "yINaP31znTy8Uhq51?9cQD4u]0E0.E"
 app.SECURITY_PASSWORD_HASH = "sha512_crypt"
 app.SECURITY_PASSWORD_SALT = "xEjV.c8)!J30PF8X9ul0SwWk;|(4,7"
 app.database = "website.db"
+
 Bootstrap(app)
 
 app.config.update(
@@ -77,6 +78,8 @@ app.config.update(
 
 mail = Mail(app)
 
+# Taken from https://www.youtube.com/watch?v=BnBjhmspw4c (YouTube)
+
 def login_required(f):
 	@wraps(f)
 	def wrap(*arg, **kwargs):
@@ -88,7 +91,9 @@ def login_required(f):
 			return redirect(url_for('login'))
 	return wrap
 
-#Real Python
+# End YouTube
+
+# Adapted from https://realpython.com/blog/python/handling-email-confirmation-in-flask/ (Real Python)
 
 def generate_confirmation_token(email): #Generates random string for conformation
     serializer = URLSafeTimedSerializer(app.secret_key)
@@ -288,8 +293,6 @@ def register():
 		cur = g.db.execute('SELECT id, username, email FROM users')
 		data = cur.fetchall()
 
-		#Remove Else from for lop, create variable to check email and user
-
 		testUser = False
 		testEmail = False
 
@@ -321,14 +324,6 @@ def register():
 			subject = "Please confirm your email"
 			send_email(email, subject, html)
 
-			#msg = Message(
-				#'Hello',
-				#sender='patrick.ali345@gmail.com',
-				#recipients=['alip@uni.coventry.ac.uk'])
-			#msg.body = "This is the email body"
-			#mail.send(msg)
-			
-			
 			return redirect(url_for('special', username = username))
 
 	else:
@@ -365,7 +360,6 @@ def autoLog(username):
 				session["id"] = record[0]
 				session["username"] = record[1]
 			
-			#session["id"] = row[0] + 1
 			print(session["id"])
 
 			return redirect(url_for('home'))
@@ -471,7 +465,7 @@ def logout():
 	session.pop("logged_in", None)
 	session.pop("id", None)
 	session.pop("username", None)
-	#loggin = False
+
 	return redirect(url_for('home'))
 
 def connect_db():

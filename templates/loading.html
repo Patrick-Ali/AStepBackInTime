@@ -13,6 +13,10 @@
       0%
   </div>
 
+<form>
+  <input type="hidden" name="url" id="url" value='{{ quiz }}'>
+</form>
+
 <script>    
     window.onload= function upload(){
       var width = 1;
@@ -22,7 +26,8 @@
       var id = setInterval(function(){frame(c)},speed);
       function frame(c) {
         if(width == 100){
-          window.location.href = "http://127.0.0.1:5000/rome_quiz";
+          var url = document.getElementById("url").value;
+          window.location.href = url;//"http://127.0.0.1:5000/rome_quiz";
         }
         else{
           width++;

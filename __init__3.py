@@ -127,10 +127,10 @@ def home():
 	if "username" in session:
 		user = session["username"]
 		#print(user)
-		return render_template("template.html", user = user)
+		return render_template("index.html", user = user)
 	else:
 		#print("Hello")
-		return render_template("template.html", user = None)
+		return render_template("index.html", user = None)
 
 @app.route("/quiz")
 def quiz():
@@ -191,7 +191,7 @@ def romeQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", form = form, user = user)
+		return render_template("loading.html", quiz = RomeQuiz, user = user)
 	else:
 		return render_template("rome_quiz.html", form = form, user = user)
 
@@ -214,7 +214,7 @@ def macedoniaQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", form = form, user = user)
+		return render_template("loading.html", quiz = macedoniaQuiz, user = user)
 	else:
 		return render_template("macedonia_quiz.html", form = form, user = user)
 
@@ -237,7 +237,7 @@ def egyptQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", form = form, user = user)
+		return render_template("loading.html", quiz = EygptQuiz, user = user)
 	else:
 		return render_template("egypt_quiz.html", form = form, user = user)		
 
@@ -262,15 +262,15 @@ def complete():
 	return render_template("complete_rome.html", data = data, user = user)
 	
 
-@app.route("/loading")
-def loading():
+@app.route("/loading/<quiz>")
+def loading(quiz):
 
 	if "username" in session:
 		user = session["username"]
 	else:
 		user = None
 
-	return render_template("loading.html", user = user)
+	return render_template("loading.html", user =  url_for(quiz), quiz = quiz)
 
 
 @app.route("/register", methods=['GET', 'POST'])

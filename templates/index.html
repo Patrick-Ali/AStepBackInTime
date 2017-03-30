@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block page %}Macedonia{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+<section style="margin: 0 1.5%; float: left; width: 63%">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi interdum, turpis sit amet pulvinar pulvinar, risus elit porta diam, a placerat mauris dolor vel leo. Quisque quam est, pellentesque in sollicitudin et, maximus ut lorem. Phasellus molestie nibh sit amet justo pulvinar aliquam eu sit amet libero. Duis vel pellentesque augue, et dapibus sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In finibus metus sem, vitae efficitur augue facilisis quis. Ut quam lectus, porta vel odio eget, blandit consequat purus. Pellentesque egestas neque sed nunc condimentum, id pulvinar purus vulputate. Donec convallis commodo tempor. Donec iaculis faucibus gravida. Mauris dapibus rutrum nibh et semper.</p>
+	<p>Cras lobortis et lectus quis hendrerit. Nulla purus neque, rhoncus ut auctor et, placerat in est. Curabitur dapibus porta turpis et convallis. Aliquam consequat lacus sed nisl faucibus, quis vulputate erat viverra. Suspendisse velit nibh, mollis sed tempor vel, ultricies nec urna. Curabitur magna augue, ullamcorper eu enim vel, molestie tincidunt magna. Curabitur in magna a mauris vestibulum porttitor. Mauris aliquet maximus turpis, a pulvinar velit placerat eu. Donec nec magna sapien. Cras ut nunc turpis. Nulla nec neque eu ex vehicula faucibus non ut erat.</p>
+	<p>Pellentesque quis aliquam est. Cras vitae enim varius, lobortis lectus non, egestas diam. Nulla facilisi. Nullam luctus nulla sit amet neque sagittis cursus. Morbi et justo pulvinar lectus feugiat venenatis. Aenean pulvinar velit quis diam vehicula, eget accumsan neque molestie. Vivamus maximus elit sed fringilla ornare. Nulla nec neque consectetur, facilisis velit aliquet, scelerisque neque. Vivamus eu condimentum leo. Nunc vitae risus mollis, consectetur mauris varius, fringilla arcu. Suspendisse id rhoncus neque, nec posuere felis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed lacinia velit tortor, ut interdum est iaculis sed. Vestibulum vitae nunc urna. Nam vulputate volutpat magna non malesuada. Duis ornare imperdiet tellus at pharetra.</p>
+	<p>Pellentesque enim nisi, rutrum sed lacus vitae, sollicitudin laoreet ligula. Vestibulum tincidunt auctor lacus quis viverra. Quisque aliquam hendrerit erat id tincidunt. Nunc accumsan porttitor maximus. Nam fringilla euismod viverra. Fusce feugiat nulla sit amet mauris consequat rutrum. Nulla et elementum sem. Nullam pharetra diam sit amet lacus laoreet lobortis. Mauris laoreet et nunc id fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+</section>
+
+<aside style="float: right; float: right; margin: 0 1.5%; width: 30%;">
+		<img src="{{ url_for('static', filename='images/logo.png')}}" style="height: 25%; width:25%;  ">
+</aside>
+
+<section style="clear: both">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi interdum, turpis sit amet pulvinar pulvinar, risus elit porta diam, a placerat mauris dolor vel leo. Quisque quam est, pellentesque in sollicitudin et, maximus ut lorem. Phasellus molestie nibh sit amet justo pulvinar aliquam eu sit amet libero. Duis vel pellentesque augue, et dapibus sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In finibus metus sem, vitae efficitur augue facilisis quis. Ut quam lectus, porta vel odio eget, blandit consequat purus. Pellentesque egestas neque sed nunc condimentum, id pulvinar purus vulputate. Donec convallis commodo tempor. Donec iaculis faucibus gravida. Mauris dapibus rutrum nibh et semper.</p>
+	<p>Cras lobortis et lectus quis hendrerit. Nulla purus neque, rhoncus ut auctor et, placerat in est. Curabitur dapibus porta turpis et convallis. Aliquam consequat lacus sed nisl faucibus, quis vulputate erat viverra. Suspendisse velit nibh, mollis sed tempor vel, ultricies nec urna. Curabitur magna augue, ullamcorper eu enim vel, molestie tincidunt magna. Curabitur in magna a mauris vestibulum porttitor. Mauris aliquet maximus turpis, a pulvinar velit placerat eu. Donec nec magna sapien. Cras ut nunc turpis. Nulla nec neque eu ex vehicula faucibus non ut erat.</p>
+	<p>Pellentesque quis aliquam est. Cras vitae enim varius, lobortis lectus non, egestas diam. Nulla facilisi. Nullam luctus nulla sit amet neque sagittis cursus. Morbi et justo pulvinar lectus feugiat venenatis. Aenean pulvinar velit quis diam vehicula, eget accumsan neque molestie. Vivamus maximus elit sed fringilla ornare. Nulla nec neque consectetur, facilisis velit aliquet, scelerisque neque. Vivamus eu condimentum leo. Nunc vitae risus mollis, consectetur mauris varius, fringilla arcu. Suspendisse id rhoncus neque, nec posuere felis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed lacinia velit tortor, ut interdum est iaculis sed. Vestibulum vitae nunc urna. Nam vulputate volutpat magna non malesuada. Duis ornare imperdiet tellus at pharetra.</p>
+	<p>Pellentesque enim nisi, rutrum sed lacus vitae, sollicitudin laoreet ligula. Vestibulum tincidunt auctor lacus quis viverra. Quisque aliquam hendrerit erat id tincidunt. Nunc accumsan porttitor maximus. Nam fringilla euismod viverra. Fusce feugiat nulla sit amet mauris consequat rutrum. Nulla et elementum sem. Nullam pharetra diam sit amet lacus laoreet lobortis. Mauris laoreet et nunc id fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+</section>	
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

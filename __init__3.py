@@ -191,7 +191,7 @@ def romeQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", quiz = RomeQuiz, user = user)
+		return redirect(url_for("loading", quiz = 'romeComplete'))
 	else:
 		return render_template("rome_quiz.html", form = form, user = user)
 
@@ -214,7 +214,7 @@ def macedoniaQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", quiz = macedoniaQuiz, user = user)
+		return redirect(url_for("loading", quiz = 'macedoniaComplete'))
 	else:
 		return render_template("macedonia_quiz.html", form = form, user = user)
 
@@ -237,12 +237,12 @@ def egyptQuiz():
 		g.db.commit()
 		g.db.close()
 
-		return render_template("loading.html", quiz = EygptQuiz, user = user)
+		return redirect(url_for("loading", quiz = 'egyptComplete'))
 	else:
 		return render_template("egypt_quiz.html", form = form, user = user)		
 
 @app.route("/complete_rome", methods=['GET', 'POST'])
-def complete():
+def romeComplete():
 
 	if "username" in session:
 		user = session["username"]
@@ -260,6 +260,46 @@ def complete():
 	g.db.close()
 
 	return render_template("complete_rome.html", data = data, user = user)
+
+@app.route("/complete_macedonia", methods=['GET', 'POST'])
+def macedoniaComplete():
+
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+
+	g.db = connect_db()
+	ID = session["id"]
+	print(ID)
+	cur = g.db.execute('SELECT score, dateDone FROM macedonia WHERE userID =' + str(ID) + ' ORDER BY score, dateDone DESC;')
+	data = cur.fetchall()
+	for row in data:
+		print(row[0])
+		print(row[1])
+	g.db.close()
+
+	return render_template("complete_macedonia.html", data = data, user = user)
+
+@app.route("/complete_egypt", methods=['GET', 'POST'])
+def egyptComplete():
+
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+
+	g.db = connect_db()
+	ID = session["id"]
+	print(ID)
+	cur = g.db.execute('SELECT score, dateDone FROM eygpt WHERE userID =' + str(ID) + ' ORDER BY score, dateDone DESC;')
+	data = cur.fetchall()
+	for row in data:
+		print(row[0])
+		print(row[1])
+	g.db.close()
+
+	return render_template("complete_egypt.html", data = data, user = user)
 	
 
 @app.route("/loading/<quiz>")
@@ -270,7 +310,9 @@ def loading(quiz):
 	else:
 		user = None
 
-	return render_template("loading.html", user =  url_for(quiz), quiz = quiz)
+	print(quiz)
+
+	return render_template("loading.html", user = user , quiz = url_for(quiz, _external = True))
 
 
 @app.route("/register", methods=['GET', 'POST'])

@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block page %}Rome Quiz Score{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-sm-12 col-md-12 col-lg-12">
+<table id="score">
+<tbody>
+<tr>
+	<th>Score</th>
+	<th>Date</th>
+</tr>
+
+{% for row in data%}
+	<tr>
+		<td> {{ row[0] }} </td>
+		<td> {{ row[1] }} </td> 
+	</tr>
+
+{% endfor %}
+</tbody>
+</table> 
+</div>
+</div>
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+
+{% endblock %}

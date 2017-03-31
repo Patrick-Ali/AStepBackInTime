@@ -48,33 +48,38 @@ html, body{
 	padding:0;
 }*/
 
+article div h2, article div p{
+		background-color: rgba(197,132,77,.8);
+    	margin: 0 1em;
+}
+
 /*---Start Parallax---*/
 .land{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/0/00/Roman_Empire_Trajan_117AD.png") repeat fixed 100%;
+	background: url("../images/roman_empire.png") repeat fixed 100%;
 }
  .land-inner{
  	padding: 25% 0; 
  }
  .army{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/5/58/Roman_Army_%26_Chariot_Experience,_Hippodrome,_Jerash,_Jordan_(5072673582).jpg") repeat fixed 100%;
+	background: url("../images/roman_army.jpg") repeat fixed 100%;
 }
  .army-inner{
  	padding: 25% 0; 
  }
  .religon{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/e/e5/Guercino_001.jpg") repeat fixed 100%;
+	background: url("../images/roman_religon.jpg") repeat fixed 100%;
 }
  .religon-inner{
  	padding: 25% 0; 
  }
  .sport{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/Panorama_Kolosseum_in_Rom_(komprimiert).jpg") repeat fixed 100%;
+	background: url("../images/roman_sport.jpg") repeat fixed 100%;
 }
  .sport-inner{
  	padding: 25% 0; 
  }
  .food{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pompejanischer_Maler_um_70_001.jpg") repeat fixed 100%;
+	background: url("../images/roman_sport.jpg") repeat fixed 100%;
 }
 
  .food-inner{
@@ -82,39 +87,39 @@ html, body{
  }
 
  .landM{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/4/40/MacedonEmpire.jpg") repeat fixed 100%;
+	background: url("../images/macedonian_empire.jpg") repeat fixed 100%;
 }
 
  .armyM{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/7/74/Macedonian_Army_Alexander.jpg") repeat fixed 100%;
+	background: url("../images/macedonian_army.jpg") repeat fixed 100%;
 }
 
  .religonM{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/e/e1/Alexander_the_Great_mosaic.jpg") repeat fixed 100%;
+	background: url("../images/macedonian_religon.jpg") repeat fixed 100%;
 }
  .sportM{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/a/a0/Palaestra_scene_Louvre_G7.jpg") repeat fixed 100%;
+	background: url("../images/macedonian_sport.jpg") repeat fixed 100%;
 }
  .foodM{
-	background: url("http://www.publicdomainpictures.net/pictures/10000/velka/296-1266102607rpyT.jpg") repeat fixed 100%;
+	background: url("../images/macedonian_food.jpg") repeat fixed 100%;
 }
 
  .landE{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Hitt_Egypt_1450_bc_ca.svg/2000px-Hitt_Egypt_1450_bc_ca.svg.png") repeat fixed 100%;
+	background: url("../images/egyption_empire.png") repeat fixed 100%;
 }
 
  .armyE{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/0/04/%C3%84gyptischer_Maler_um_1355_v._Chr._001.jpg") repeat fixed 100%;
+	background: url("../images/egyption_army.jpg") repeat fixed 100%;
 }
 
  .religonE{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/c/c1/Opening_of_the_mouth_ceremony.jpg") repeat fixed 100%;
+	background: url("../images/egyption_religon.jpg") repeat fixed 100%;
 }
  .sportE{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/1/13/Egyptian_Stick_fighting.jpg") repeat fixed 100%;
+	background: url("../images/egyption_sport.jpg") repeat fixed 100%;
 }
  .foodE{
-	background: url("https://upload.wikimedia.org/wikipedia/commons/9/91/Maler_der_Grabkammer_des_Sennudem_001.jpg") repeat fixed 100%;
+	background: url("../images/egyption_food.jpg") repeat fixed 100%;
 }
 
  /*http://www.w3newbie.com/wp-content/uploads/parallax-2.jpg*/

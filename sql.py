@@ -36,3 +36,11 @@ with sqlite3.connect("website.db") as connection:
 		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
 
 	#c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)
+
+	#c.execute(""" DROP INDEX user_id """)
+	
+	#c.execute(""" CREATE INDEX user_id ON users (id); """)
+	#c.execute(""" CREATE INDEX rome_user ON rome (userID); """)
+	#c.execute(""" CREATE INDEX egypt_user ON eygpt (userID); """), 
+	#c.execute(""" CREATE INDEX macedonia_user ON macedonia (userID); """)
+	c.execute(""" CREATE INDEX user_name ON users (username); """)

@@ -53,8 +53,8 @@ else if(clickedEmpire === true)
 {
 	console.log("hello2");
 	document.getElementById("empireList").className="hidden";
-empire.innerHTML="Ancient Empires &#x25BC";
-clickedEmpire = false;
+	empire.innerHTML="Ancient Empires &#x25BC";
+	clickedEmpire = false;
 }
 }
 

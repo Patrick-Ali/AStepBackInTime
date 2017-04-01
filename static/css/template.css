@@ -83,7 +83,7 @@ article div h2, article div p{
  	padding: 25% 0; 
  }
  .food{
-	background: url("../images/roman_sport.jpg") repeat fixed 100%;
+	background: url("../images/roman_food.jpg") repeat fixed 100%;
 }
 
  .food-inner{
@@ -371,7 +371,10 @@ nav ul li a {
 	color: inherit;
 }
 
-	
+#Empire{
+	cursor: pointer;
+}
+
 .hidden{
 	max-height: 0;
 	margin: 0;

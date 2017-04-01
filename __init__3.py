@@ -61,7 +61,7 @@ app = Flask(__name__)
 app.secret_key = "yINaP31znTy8Uhq51?9cQD4u]0E0.E"
 app.SECURITY_PASSWORD_HASH = "sha512_crypt"
 app.SECURITY_PASSWORD_SALT = "xEjV.c8)!J30PF8X9ul0SwWk;|(4,7"
-app.database = "website.db"
+app.database = "database/website.db"
 
 Bootstrap(app)
 
@@ -540,6 +540,9 @@ def confirmEmail():
 		user = session["username"]
 	else:
 		user = None
+
+	if "logged_in" in session:
+		return redirect(url_for("home"))
 
 	error = None
 

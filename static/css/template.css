@@ -480,6 +480,9 @@ nav ul li a {
 		background-color: #8a6544;
 		opacity: 0;
 		transition: opacity 1s ease;
+		-webkit-transition: all 1s ease;
+		-moz-transition:all 1s ease;
+		-o-transition:all 1s ease;
 	}
 	
 	nav ul{
@@ -489,6 +492,9 @@ nav ul li a {
 		border: 0;
 		opacity: 0;
 		transition: opacity 1s ease;
+		-webkit-transition: all 1s ease;
+		-moz-transition:all 1s ease;
+		-o-transition:all 1s ease;
 	}
 	
 	nav ul li a{
@@ -509,6 +515,12 @@ nav ul li a {
 	.showing{
 		opacity: 1 !important;
 		max-height: 20em; 
+	}
+
+	.hideing{
+		opacity: 0 !important;
+		max-height: 0 !important;
+		/*transition: opacity 1s ease !important;*/
 	}
 	
 	div .handle{
@@ -539,6 +551,9 @@ nav ul li a {
 		background-color: #8a6544;
 		color: white;
 		transition: opacity 1s ease;
+		-webkit-transition: all 1s ease;
+		-moz-transition:all 1s ease;
+		-o-transition:all 1s ease;
 	}
 	
 	footer #footer ul{
@@ -548,6 +563,9 @@ nav ul li a {
 		border: 0;
 		opacity: 0;
 		transition: opacity 1s ease;
+		-webkit-transition: all 1s ease;
+		-moz-transition:all 1s ease;
+		-o-transition:all 1s ease;
 	}
 	
 	footer #footer ul li a{
@@ -564,7 +582,13 @@ nav ul li a {
 	.show{
 		opacity: 1 !important;
 		max-height: 20em !important;
-		transition: opacity 1s ease !important; 
+		/*transition: opacity 1s ease !important;*/
+	}
+
+	.hideing{
+		opacity: 0 !important;
+		max-height: 0 !important;
+		/*transition: opacity 1s ease !important;*/
 	}
 
 

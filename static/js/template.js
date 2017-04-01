@@ -21,6 +21,8 @@ else if(clickedTop === true)
 {
 document.getElementById("menuTop").className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/g, '');
 document.getElementById("navBar").className = document.getElementById("navBar").className.replace(/(?:^|\s)showing(?!\S)/g, '');
+document.getElementById("menuTop").classList.toggle("hideing");//.className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/g, '');
+document.getElementById("navBar").classList.toggle("hideing");//.className = document.getElementById("navBar").className.replace(/(?:^|\s)showing(?!\S)/g, '');
 test.innerHTML="Menu &#x25BC";
 clickedTop = false;
 }
@@ -67,6 +69,8 @@ else if(clickedBottom === true)
 {
 document.getElementById("menuBottom").className=document.getElementById("menuBottom").className.replace(/(?:^|\s)show(?!\S)/g, '');
 document.getElementById("footer").className = document.getElementById("footer").className.replace(/(?:^|\s)show(?!\S)/g, '');
+document.getElementById("menuBottom").classList.toggle("hideing");//.className=document.getElementById("menuBottom").className.replace(/(?:^|\s)show(?!\S)/g, '');
+document.getElementById("footer").classList.toggle("hideing");//.className = document.getElementById("footer").className.replace(/(?:^|\s)show(?!\S)/g, '');
 bottom.innerHTML="More About Us &#x25BC";
 clickedBottom = false;
 }

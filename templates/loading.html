@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 
-{% block page %}Loading{% endblock %}
+{% block page %}Grading.{% endblock %}
 {% block heading %}
   {{ super() }}
 {% endblock %}
@@ -31,6 +31,7 @@
           window.location.href = url;//"http://127.0.0.1:5000/rome_quiz";
         }
         else{
+          changeTitle();
           width++;
           //console.log(width);
           c.style.width = width + '%';
@@ -45,6 +46,20 @@
           c.setAttribute("aria-valuenow", v);
         }
           
+        }
+
+        function changeTitle(){
+          console.log("Hello");
+          var title = document.getElementById("mainTitle").innerHTML;
+          if(title == "Grading."){
+            document.getElementById("mainTitle").innerHTML = "Grading.."; 
+          }
+          else if(title == "Grading.."){
+            document.getElementById("mainTitle").innerHTML = "Grading...";
+          }
+          else{
+            document.getElementById("mainTitle").innerHTML= "Grading.";
+          }
         }
       };
       

@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+
+{% block page %}Confirm Email{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+
+<p style="text-align: center;">Thank you for registering, only one step to go, please confirm your email address and log in</p>
+
+
+
+{% if error %}
+  <p> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+
+{% block page %}Login Check{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+<form method="post" class="form-horizontal">
+<div class = "form-group">
+<label class="control-label col-sm-2" for="username">Username</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" placeholder="Username" name="username" value="{{ request.form.username }}" id="username">
+</div>
+</div>
+<div class ="form-group">
+<label class="control-label col-sm-2" for="password">Password</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" placeholder="Password" name="password" value="{{ request.form.password }}" id="password">
+</div>
+</div>
+<div class="form-group">
+<div class="col-sm-offset-6 col-sm-6">
+<button type="submit" class="btn btn-default" name="submit" id ="submit">Submit</button>
+</div>
+<div class="col-sm-offset-6 col-sm-6">
+<a class="btn btn-default" href="\register" role="button">Or Register Now</a>
+</div>
+</div>
+</form>
+
+
+
+{% if error %}
+  <p id="error"> {{ error }} </p>
+{% endif %}
+</div>
+{% endblock %}

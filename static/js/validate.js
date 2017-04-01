@@ -197,4 +197,13 @@ function confirmValidate(){
 		document.getElementById('conError').style.color = "green";
 		document.getElementById('conError').style.textAlign = "center";
 	}
+
+}
+
+function confirmDelete(){
+	return confirm("Please confirm you wish to delete this profile, this action is permanet");
+}
+
+function confirmUpdate(){
+	return confirm("Please confirm you wish to update this profile, this action is permanet");
 }

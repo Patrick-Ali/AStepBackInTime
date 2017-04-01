@@ -21,19 +21,22 @@ with sqlite3.connect("website.db") as connection:
 
 	#c.execute('ALTER TABLE rome ADD dateDone NUMBER DEFAULT CURRENT_TIMESTAMP; ')
 
+	#c.execute('DROP TABLE eygpt;') 
 	#c.execute('DROP TABLE egypt;') 
+	#c.execute('DROP TABLE rome;') 
+	#c.execute('DROP TABLE macedonia;') 
 
 	#c.execute("""CREATE TABLE rome( \
-		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
-		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+	# 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'LOCALTIME')), \
+	# 	FOREIGN KEY(userID) REFERENCES users(id)  );""")
 
-	#c.execute("""CREATE TABLE macedonia( \
-		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
-		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+	# c.execute("""CREATE TABLE macedonia( \
+	# 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'LOCALTIME')), \
+	# 	FOREIGN KEY(userID) REFERENCES users(id)  );""")
 
-	#c.execute("""CREATE TABLE egypt( \
-		#id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP, \
-		#FOREIGN KEY(userID) REFERENCES users(id)  );""")
+	# c.execute("""CREATE TABLE egypt( \
+	# 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userID INTEGER NOT NULL, score INTEGER NOT NULL, dateDone DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'LOCALTIME')), \
+	# 	FOREIGN KEY(userID) REFERENCES users(id)  );""")
 
 	#c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)
 
@@ -43,4 +46,10 @@ with sqlite3.connect("website.db") as connection:
 	#c.execute(""" CREATE INDEX rome_user ON rome (userID); """)
 	#c.execute(""" CREATE INDEX egypt_user ON eygpt (userID); """), 
 	#c.execute(""" CREATE INDEX macedonia_user ON macedonia (userID); """)
-	c.execute(""" CREATE INDEX user_name ON users (username); """)
+	#c.execute(""" CREATE INDEX user_name ON users (username); """)
+
+	#c.execute(""" CREATE INDEX user_name ON users (username); """)
+
+	#c.execute(""" CREATE TRIGGER user_delete_rome AFTER DELETE ON users FOR EACH ROW BEGIN DELETE FROM rome WHERE userID = OLD.id; END; """)
+	#c.execute(""" CREATE TRIGGER user_delete_macedonia AFTER DELETE ON users FOR EACH ROW BEGIN DELETE FROM macedonia WHERE userID = OLD.id; END; """)
+	#c.execute(""" CREATE TRIGGER user_delete_egypt AFTER DELETE ON users FOR EACH ROW BEGIN DELETE FROM egypt WHERE userID = OLD.id; END; """)

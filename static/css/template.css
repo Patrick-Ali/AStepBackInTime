@@ -7,6 +7,8 @@ body{
 	margin: 0;
 	font-family: verdana, arial, sans-serif;
 	background-color: #9d693d;
+	position: relative;
+	z-index: -1;
 }
 html{
 	position: relative;
@@ -21,6 +23,8 @@ html, body{
 	margin: 0;
 	padding: 0;
 	border: 0;
+	position: relative;
+	z-index: -1;
 }
 
 .row{
@@ -227,6 +231,7 @@ article div h2, article div p{
     bottom: 0;
     width: 100%;
     height: 60px;
+    z-index: -1;
     /*background-color: #f5f5f5;*/
 }
 
@@ -264,8 +269,13 @@ article div h2, article div p{
 	margin-bottom: 1em;
 	position: relative;
 	background-color: #9d693d /*#78909C*/;
-	/*position: relative;
-	z-index: 13;*/
+	position: relative;
+	z-index: -1;
+}
+
+#topRow{
+	position: relative;
+	z-index: -1;
 }
 
 #upper:after{

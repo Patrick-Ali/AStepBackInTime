@@ -324,6 +324,7 @@ def register():
 		user = None
 
 	error = None
+
 	if request.method == 'POST':
 		firstname = request.form['firstname']
 		lastname = request.form['lastname']
@@ -360,13 +361,22 @@ def register():
 			g.db.commit()
 			g.db.close()
 
-			token = generate_confirmation_token(email)
-			confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
-			html = render_template('/confirmEmail.html', confirm_url=confirm_url)
-			subject = "Please confirm your email"
-			send_email(email, subject, html)
+			# g.db = connect_db()
+			# cur = g.db.execute('SELECT id FROM users WHERE email =' + email + ';')
+			# data = cur.fetchall()
+			# session['ID'] = data[0]
+			# g.db.close()
 
-			return redirect(url_for('special', username = username))
+
+			# token = generate_confirmation_token(email)
+			# confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
+			# html = render_template('/confirmEmail.html', confirm_url=confirm_url)
+			# subject = "Please confirm your email"
+			# send_email(email, subject, html)
+
+			# error = "You have Successfuly Registered, now confirm your address before logging in"
+
+			return redirect(url_for('special', username = username, error = error))
 
 	else:
 		return render_template("register.html", error = error, user = user)
@@ -381,6 +391,7 @@ def confirm(token):
 	
 	g.db = connect_db()
 	ID = session["id"]
+	print(ID)
 	cur = g.db.execute('UPDATE users SET confirmed = (?) WHERE id =' + str(ID) + ';', (1,) )
 	g.db.commit()
 	g.db.close()
@@ -394,8 +405,9 @@ def special(username):
 
 
 def autoLog(username):
+			print(username)
 			g.db = connect_db()
-			cur = g.db.execute('SELECT id, username FROM users WHERE username = username;')
+			cur = g.db.execute('SELECT id, username FROM users WHERE username = "Paddy345";')
 			dataSecond = cur.fetchall()
 			session["logged_in"] = True
 			for record in dataSecond:
@@ -464,7 +476,7 @@ def myProfile():
 		return render_template("myProfile.html", firstname = firstname, lastname = lastname, email = email, \
 		 username = username, password = password, user = user)
 
-
+#CREATE TEMP LOGIN
 @app.route('/login', methods=['GET','POST'])
 def login():
 	if "username" in session:
@@ -478,9 +490,10 @@ def login():
 		print(user)
 		password = request.form['password']
 		g.db = connect_db()
-		cur = g.db.execute('SELECT id, username, password FROM users')
+		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
 		data = cur.fetchall()
 		for row in data:
+			email = row[4]
 			if row[1] == user:
 				print(user)
 				if row[2] == password:
@@ -488,8 +501,16 @@ def login():
 					session["logged_in"] = True
 					session["id"] = row[0]
 					session["username"] = row[1]
-					redirect(url_for('home'))
-					return redirect(url_for('home'))
+					if row[3] == 0:
+						token = generate_confirmation_token(email)
+						confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
+						html = render_template('/confirmEmail.html', confirm_url=confirm_url)
+						subject = "Please confirm your email"
+						send_email(email, subject, html)
+						redirect(url_for('home'))
+						return redirect(url_for('home'))
+					else:
+						return redirect(url_for('home'))
 
 				else:
 					g.db.close()

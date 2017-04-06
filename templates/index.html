@@ -69,7 +69,12 @@
 </section>
 
 <aside style="float: right; margin: 2% 1.5%; width: 30%;">
-		<img src="{{ url_for('static', filename='images/roman_army.jpg')}}" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+    <figure>
+		    <a href="/rome"> <img src="{{ url_for('static', filename='images/roman_army.jpg')}}" alt="Roman Army" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+        </a>
+        <figcaption style="text-align: center;">Roman Army</figcaption>
+
+    </figure>
 </aside>
 
 <section style="clear: both margin: 2% 1.5%; float: right; width: 63%;">
@@ -81,7 +86,11 @@
 </section>
 
 <aside style="float: left; margin: 2% 1.5%; width: 30%;">
-		<img src="{{ url_for('static', filename='images/macedonian_religon.jpg')}}" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+    <figure>
+		  <a href="/macedonia"><img src="{{ url_for('static', filename='images/macedonian_religon.jpg')}}" alt="Macedonian Religon" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+      </a>
+      <figcaption style="text-align: center;">Macedonian Religon</figcaption>
+    </figure>
 </aside>
 
 <section style="margin: 2% 1.5%; float: left; width: 63%; ">
@@ -93,7 +102,10 @@
 </section>
 
 <aside style="float: right; margin: 2% 1.5%; width: 30%;">
-		<img src="{{ url_for('static', filename='images/egyption_army.jpg')}}" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+		<a href="/egypt"><img src="{{ url_for('static', filename='images/egyption_army.jpg')}}" alt="Egyption Army" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
+    </a>
+          <figcaption style="text-align: center;">Egyption Army</figcaption>
+    </figure>
 </aside>	
 
 {% if error %}

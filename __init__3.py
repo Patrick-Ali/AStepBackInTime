@@ -15,11 +15,11 @@ class MultiCheckboxField(SelectMultipleField):
 
 class RomeQuiz(Form):
 	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])#Romulus
-	q2 = RadioField("When was Rome founded", choices = [("753","753"),("850","850"),("600","600")])#753
+	q2 = RadioField("When was Rome founded (All are in B.C. time)", choices = [("753","753"),("850","850"),("600","600")])#753
 	q3 = MultiCheckboxField("Which two groups sacked Rome", choices = [("Gauls","Gauls"),("Visigoths","Visigoths"),("Carthaginians", "Carthaginians"),("Greeks","Greeks")])#Gauls and Visigoths
 	q4 = TextField("What famous mountains did Hannibal cross")#Alps
-	q5 = RadioField("Who was the first king of Rome", choices = [("Augustus Caesar","Augustus Caesar"),("Julius Caesar","Julius Caesar"),("Nero","Nero"),("Trajan","Trajan")])#Augustus Caesar
-	q6 = RadioField("When was Rome founded", choices = [("45","45"),("27","27"),("100","100")])#27
+	q5 = RadioField("Who was the first Emperor of the Roman Empire", choices = [("Augustus Caesar","Augustus Caesar"),("Julius Caesar","Julius Caesar"),("Nero","Nero"),("Trajan","Trajan")])#Augustus Caesar
+	q6 = RadioField("When was the Roman Empire founded (All are in B.C. time)", choices = [("45","45"),("27","27"),("100","100")])#27
 	q7 = TextField("Caesar's rival during the civil war was Pompey the")#Great
 	q8 = MultiCheckboxField("Select all correct provinces of the Roman empire", choices=[("Aegyptus","Aegyptus"),("Germania","Germania"),("Britannia", "Britannia"),("Greece","Greece")])#Aegyptus and Britannia
 	q9 = TextField("Who was Mark Anthony's most famous lover")#Cleopatra
@@ -33,7 +33,7 @@ class EgyptQuiz(Form):
 	q3 = MultiCheckboxField("Which two groups were rivals of ancient Egypt", choices = [("Canaanites","Canaanites"),("Rome","Rome"),("Nubians", "Nubians"),("Persia","Persia")])#Canaanites and Nubians
 	q4 = TextField("What famous river runs through Egypt")#Nile
 	q5 = RadioField("What was ancient Egypt's paper called", choices = [("Papyrus","Papyrus"),("Reed","Reed"),("Stone","Stone"),("Clay","Clay")])#Papyrus
-	q6 = RadioField("When was the ancient Egyptian kingdom believed to have been founded founded", choices = [("3100","3100"),("2900","2900"),("5000","5000")])#3100
+	q6 = RadioField("When was the ancient Egyptian kingdom believed to have been founded founded (All are in B.C. time)", choices = [("3100","3100"),("2900","2900"),("5000","5000")])#3100
 	q7 = TextField("Complete the title of this famous ruler, Tutan") #khamun
 	q8 = MultiCheckboxField("Which two kingdoms united to form ancient Egypt?", choices=[("Upper Egypt","Upper Egypt"),("Judea","Judea"),("Sudan", "Sudan"),("Lower Egypt","Lower Egypt")])# Upper and Lower Egypt
 	q9 = TextField("What are is the famous last resting places of Egypt's ancient rulers?")#Valley of the kings
@@ -43,11 +43,11 @@ class EgyptQuiz(Form):
 
 class MacedoniaQuiz(Form):
 	q1 = RadioField("Who was the first king of Macedonia", choices = [("Karanos","Karanos"),("Alexander","Alexander")])#Karanos
-	q2 = RadioField("When was Aigai supposedly founded", choices = [("808","808"),("399","399"),("500","500")])#808
+	q2 = RadioField("When was Aigai supposedly founded (All are in B.C. time)", choices = [("808","808"),("399","399"),("500","500")])#808
 	q3 = MultiCheckboxField("Which two cities did Alexander famously raze to the ground", choices = [("Massaga","Massaga"),("Athens","Athens"),("Gaza", "Gaza"),("Thebes","Thebes")])#Massaga and Thebes
 	q4 = TextField("What was the name of Alexander's farther")#Philip
 	q5 = RadioField("Which province of Alexander's empire proclaimed him a God", choices = [("Egypt","Egypt"),("Persia","Persia"),("Greece","Greece"),("India","India")])# Egypt
-	q6 = RadioField("When did Alexander come to the thrown", choices = [("336","336"),("323","323"),("350","350")])#336
+	q6 = RadioField("When did Alexander come to the thrown (All are in B.C. time)", choices = [("336","336"),("323","323"),("350","350")])#336
 	q7 = TextField("Alexander was given the grand title of") #King of Asia
 	q8 = MultiCheckboxField("Select all correct provinces of the Alexanders kingdom", choices=[("Egypt","Egypt"),("Italia","Italia"),("Hispania", "Hispania"),("Persia","Persia")])# Egypt and Persia
 	q9 = TextField("What was the name of Alexander the greats successor")# Alexander IV
@@ -85,7 +85,7 @@ def login_required(f):
 		if 'logged_in' in session:
 			return f(*arg, **kwargs)
 		else:
-			print("Redirecting")
+			#print("Redirecting")
 			flash("You must be logged in to access this.")
 			return redirect(url_for('login'))
 	return wrap
@@ -254,12 +254,12 @@ def romeComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	print(ID)
+	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM rome WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	for row in data:
-		print(row[0])
-		print(row[1])
+	#for row in data:
+		#print(row[0])
+		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_rome.html", data = data, user = user)
@@ -275,12 +275,12 @@ def macedoniaComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	print(ID)
+	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM macedonia WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	for row in data:
-		print(row[0])
-		print(row[1])
+	#for row in data:
+		#print(row[0])
+		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_macedonia.html", data = data, user = user)
@@ -296,12 +296,12 @@ def egyptComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	print(ID)
+	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM egypt WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	for row in data:
-		print(row[0])
-		print(row[1])
+	#for row in data:
+		#print(row[0])
+		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_egypt.html", data = data, user = user)
@@ -316,7 +316,7 @@ def loading(quiz):
 	else:
 		user = None
 
-	print(quiz)
+	#print(quiz)
 
 	return render_template("loading.html", user = user , quiz = url_for(quiz, _external = True))
 
@@ -346,17 +346,17 @@ def register():
 		testEmail = False
 
 		for row in data:
-			print(row[1])
-			print(row[2])
+			#print(row[1])
+			#print(row[2])
 			if row[1] == username:
 				g.db.close()
-				print("Username:" + str(row[1]))
+				#print("Username:" + str(row[1]))
 				error = 'Username already used'
 				testUser = True
 				return render_template("register.html", error = error, user = user)
 			elif row[2] == email:
 				g.db.close()
-				print(row[2])
+				#print(row[2])
 				error = 'Email alreaddy in use'
 				testEmail = True
 				return render_template("register.html", error = error, user = user)
@@ -397,7 +397,7 @@ def confirm(token):
 	
 	g.db = connect_db()
 	ID = session["id"]
-	print(ID)
+	#print(ID)
 	cur = g.db.execute('UPDATE users SET confirmed = (?) WHERE id =' + str(ID) + ';', (1,) )
 	g.db.commit()
 	g.db.close()
@@ -461,11 +461,11 @@ def myProfile():
 		testEmail = False
 
 		for row in data:
-			print(row[1])
-			print(row[2])
+			#print(row[1])
+			#print(row[2])
 			if row[1] == username:
 				g.db.close()
-				print("Username:" + str(row[1]))
+				#print("Username:" + str(row[1]))
 				error = 'Username already used'
 				testUser = True
 				if row[0] == session["id"]:
@@ -476,7 +476,7 @@ def myProfile():
 						username = username, password = password, user = user, error = error)
 			elif row[2] == email:
 				g.db.close()
-				print(row[2])
+				#print(row[2])
 				error = 'Email alreaddy in use'
 				testEmail = True
 				if row[0] == session["id"]:
@@ -560,7 +560,7 @@ def tempLogin():
 	error = "Please login so we can send you a confirmation email"
 	if request.method == 'POST':
 		user = request.form['username']
-		print(user)
+		#print(user)
 		password = request.form['password']
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
@@ -568,7 +568,7 @@ def tempLogin():
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				print(user)
+				#print(user)
 				if row[2] == password:
 					g.db.close()
 					#session["logged_in"] = True
@@ -606,7 +606,7 @@ def login():
 	error = None
 	if request.method == 'POST':
 		user = request.form['username']
-		print(user)
+		#print(user)
 		password = request.form['password']
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
@@ -614,12 +614,12 @@ def login():
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				print(user)
+				#print(user)
 				if row[2] == password:
 					g.db.close()
 					session["id"] = row[0]
 					if row[3] == 0:
-						print("Hello")
+						#print("Hello")
 						# token = generate_confirmation_token(email)
 						# confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
 						# html = render_template('/confirmEmail.html', confirm_url=confirm_url)

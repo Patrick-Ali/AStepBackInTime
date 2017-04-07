@@ -139,13 +139,13 @@ article div h2, article div p{
 	display: block;
 }
 
-#logExtra{
-	display: block;
+.logExtra{
+	display: block !important;
 	background-color: #8a6544;
 
 }
 
-#logExtra a{
+.logExtra a{
 	color: white;
 }
 

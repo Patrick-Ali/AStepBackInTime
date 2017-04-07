@@ -2,6 +2,9 @@ import sqlite3
 
 with sqlite3.connect("database/website.db") as connection:
 	c = connection.cursor()
+
+	#SQL used to create, alter, insert and change tables
+
 	#c.execute(""" CREATE TABLE users( \
 		#id INTEGER PRIMARY KEY AUTOINCREMENT, firstname TEXT NOT NULL, lastname TEXT NOT NULL, email TEXT NOT NULL, username TEXT NOT NULL, \
 		#password TEXT NOT NULL) """)
@@ -40,15 +43,16 @@ with sqlite3.connect("database/website.db") as connection:
 
 	#c.execute("""SELECT datetime(CURRENT_TIMESTAMP, 'localtime'); """)
 
-	#c.execute(""" DROP INDEX user_id """)
+	#SQLite Indices for faster search
+
+	#c.execute(""" DROP INDEX user_name """)
 	
 	#c.execute(""" CREATE INDEX user_id ON users (id); """)
 	#c.execute(""" CREATE INDEX rome_user ON rome (userID); """)
-	#c.execute(""" CREATE INDEX egypt_user ON eygpt (userID); """), 
+	#c.execute(""" CREATE INDEX egypt_user ON egypt (userID); """), 
 	#c.execute(""" CREATE INDEX macedonia_user ON macedonia (userID); """)
-	#c.execute(""" CREATE INDEX user_name ON users (username); """)
 
-	#c.execute(""" CREATE INDEX user_name ON users (username); """)
+	#SQLite triggers to automate user deletion from database
 
 	#c.execute(""" CREATE TRIGGER user_delete_rome AFTER DELETE ON users FOR EACH ROW BEGIN DELETE FROM rome WHERE userID = OLD.id; END; """)
 	#c.execute(""" CREATE TRIGGER user_delete_macedonia AFTER DELETE ON users FOR EACH ROW BEGIN DELETE FROM macedonia WHERE userID = OLD.id; END; """)

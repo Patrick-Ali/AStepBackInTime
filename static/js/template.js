@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var clickedTop = false;
 var clickedBottom = false;
@@ -22,8 +22,8 @@ function dropDown(){
 	else if(clickedTop === true)
 	{
 		// Hide menu
-		document.getElementById("menuTop").className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/g, '');
-		document.getElementById("navBar").className = document.getElementById("navBar").className.replace(/(?:^|\s)showing(?!\S)/g, '');
+		document.getElementById("menuTop").className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/gm, '');
+		document.getElementById("navBar").className = document.getElementById("navBar").className.replace(/(?:^|\s)showing(?!\S)/gm, '');
 		document.getElementById("menuTop").classList.toggle("hideing");
 		document.getElementById("navBar").classList.toggle("hideing");
 		topp.innerHTML="Menu &#x25BC";
@@ -36,13 +36,16 @@ function dropDownLoggedIn(){
 	if(clickedLogin === false)
 	{
 		// Show menu
-		document.getElementById("logExtra").style.display = "block";
+		document.getElementById("profile").className="logExtra";
+		document.getElementById("logout").className="logExtra";
 		logg.innerHTML="&#9650";
 		clickedLogin = true;
 	}
 	else if(clickedLogin === true)
 	{
-		document.getElementById("logExtra").style.display = "none";
+		// Hide menu
+		document.getElementById("profile").className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/gm, '');
+		document.getElementById("logout").className=document.getElementById("menuTop").className.replace(/(?:^|\s)showing(?!\S)/gm, '');
 		logg.innerHTML="&#x25BC";
 		clickedLogin = false;
 	}
@@ -79,8 +82,8 @@ function dropDownBottom(){
 	else if(clickedBottom === true)
 	{
 		// Hide menu
-		document.getElementById("menuBottom").className=document.getElementById("menuBottom").className.replace(/(?:^|\s)show(?!\S)/g, '');
-		document.getElementById("footer").className = document.getElementById("footer").className.replace(/(?:^|\s)show(?!\S)/g, '');
+		document.getElementById("menuBottom").className=document.getElementById("menuBottom").className.replace(/(?:^|\s)show(?!\S)/gm, '');
+		document.getElementById("footer").className = document.getElementById("footer").className.replace(/(?:^|\s)show(?!\S)/gm, '');
 		document.getElementById("menuBottom").classList.toggle("hideing");
 		document.getElementById("footer").classList.toggle("hideing");
 		bottom.innerHTML="More About Us &#x25BC";

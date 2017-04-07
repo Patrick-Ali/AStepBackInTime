@@ -141,7 +141,7 @@ def home():
 
 @app.route("/quiz")
 def quiz():
-	""" Route the user to the site quiz page """
+	""" Route the user to the site quiz selection page """
 	if "username" in session:
 		user = session["username"]
 		return render_template("quiz.html", user = user)

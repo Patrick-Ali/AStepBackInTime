@@ -69,12 +69,10 @@
 		<div class="row" >
 			<div id="topLog" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul id="login">
-				<p id="ntext"><a href="login">Login/Register</a></p>
-				<p id ="ltext" onclick="dropDownLoggedIn()">{{ user }} <span id="arrow">▼</span> </p>
-				<div id="logExtra" style="display:none;">
-					<li class="loggedIn"><a href="myProfile">My Profile</a></li>
-					<li class="loggedIn"><a href="logout">Log Out</a></li>
-				</div>
+				<li id="ntext"><a href="login">Login/Register</a></li>
+				<li id ="ltext" onclick="dropDownLoggedIn()">{{ user }} <span id="arrow">▼</span> </li>
+					<li id="profile" style="display: none;"><a href="myProfile">My Profile</a></li>
+					<li id="logout" style="display: none;"><a href="logout">Log Out</a></li>
 			</ul>
 			</div>
 		</div>

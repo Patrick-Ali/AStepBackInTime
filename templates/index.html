@@ -1,5 +1,7 @@
 {% extends "template.html" %}
 
+{% block title %}{{ super() }}Home{% endblock %}
+
 {% block page %}Home{% endblock %}
 {% block heading %}
   {{ super() }}
@@ -23,7 +25,7 @@
       <a href="rome"><img src="../static/images/rome.png" alt="Rome">
       <div class="carousel-caption">
         <h3>Rome</h3>
-        <p style="color: black; margin-top: 0.1em; ">Learn about Rome from Kingdom to Rebublic to Empire.</p>
+        <p style="color: black; margin-top: 0.1em; ">Learn about Rome from Kingdom to Republic to Empire.</p>
       </div>
       </a>
     </div>
@@ -41,7 +43,7 @@
       <a href="egypt"><img src="../static/images/eygpt.png" alt="Egypt">
       <div class="carousel-caption">
         <h3>Egypt</h3>
-        <p style="color: black;">Leanr abput the ancient Egyption Empire and its Pharos.</p>
+        <p style="color: black;">Learn about the ancient Egyptian Empire and its Pharos.</p>
       </div>
       </a>
     </div>
@@ -89,7 +91,7 @@
     <figure>
 		  <a href="/macedonia"><img src="{{ url_for('static', filename='images/macedonian_religon.jpg')}}" alt="Macedonian Religon" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
       </a>
-      <figcaption style="text-align: center;">Macedonian Religon</figcaption>
+      <figcaption style="text-align: center;">Macedonian Religion</figcaption>
     </figure>
 </aside>
 
@@ -104,7 +106,7 @@
 <aside style="float: right; margin: 2% 1.5%; width: 30%;">
 		<a href="/egypt"><img src="{{ url_for('static', filename='images/egyption_army.jpg')}}" alt="Egyption Army" style="max-height: 100%; max-width: 100%; margin-top: 20em;">
     </a>
-          <figcaption style="text-align: center;">Egyption Army</figcaption>
+          <figcaption style="text-align: center;">Egyptian Army</figcaption>
     </figure>
 </aside>	
 

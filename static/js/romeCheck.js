@@ -1,4 +1,6 @@
 function romeCheck(){
+	// Function used to tally the score for the Rome Quiz
+
 	var q1 = document.getElementById('q1');
 	var q2 = document.getElementById('q2');
 	var q3 = document.getElementById('q3');

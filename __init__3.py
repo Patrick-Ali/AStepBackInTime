@@ -9,9 +9,12 @@ from wtforms import SubmitField, SelectField, RadioField, BooleanField, TextFiel
 
 #Following taken from https://gist.github.com/doobeh/4668212
 class MultiCheckboxField(SelectMultipleField):
+	#Used to create text boxes for WTF
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
 #End
+
+# Begin Quiz Classes for WTF
 
 class RomeQuiz(Form):
 	q1 = RadioField("Who was the first king of Rome", choices = [("Romulus","Romulus"),("Remus","Remus")])#Romulus
@@ -55,6 +58,9 @@ class MacedoniaQuiz(Form):
 
 	submit = SubmitField("Grade")
 
+# End Quiz Classes for WTF
+
+#Begin App settings
 
 app = Flask(__name__)
 
@@ -77,11 +83,14 @@ app.config.update(
 
 mail = Mail(app)
 
+#End App settings
+
 # Taken from https://www.youtube.com/watch?v=BnBjhmspw4c (YouTube)
 
 def login_required(f):
 	@wraps(f)
 	def wrap(*arg, **kwargs):
+		"""Used to prevent people entering pages they need to be logged in to use by redirecting them to the login page"""
 		if 'logged_in' in session:
 			return f(*arg, **kwargs)
 		else:
@@ -123,58 +132,53 @@ def send_email(to, subject, template):#Sends e-mail
 
 @app.route("/")
 def home():
+	""" Route the user to the site homepage """
 	if "username" in session:
 		user = session["username"]
-		#print(user)
 		return render_template("index.html", user = user)
 	else:
-		#print("Hello")
 		return render_template("index.html", user = None)
 
 @app.route("/quiz")
 def quiz():
+	""" Route the user to the site quiz page """
 	if "username" in session:
 		user = session["username"]
-		#print(user)
 		return render_template("quiz.html", user = user)
 	else:
-		#print("Hello")
 		return render_template("quiz.html", user = None) 
 
 @app.route("/rome")
 def rome():
+	""" Route the user to the Rome information page """
 	if "username" in session:
 		user = session["username"]
-		#print(user)
 		return render_template("rome.html", user = user)
 	else:
-		#print("Hello")
 		return render_template("rome.html", user = None)
 
 @app.route("/macedonia")
 def macedonia():
+	""" Route the user to the Macedonia information page """
 	if "username" in session:
 		user = session["username"]
-		#print(user)
 		return render_template("macedonia.html", user = user)
 	else:
-		#print("Hello")
 		return render_template("macedonia.html", user = None)
 
 @app.route("/egypt")
 def egypt():
+	""" Route the user to the Egypt information page """
 	if "username" in session:
 		user = session["username"]
-		#print(user)
 		return render_template("egypt.html", user = user)
 	else:
-		#print("Hello")
 		return render_template("egypt.html", user = None)
 
 @app.route("/rome_quiz", methods=['GET', 'POST'])
 @login_required
 def romeQuiz():
-
+	""" Route the user to the Rome quiz page or if they submit a quiz it will input the results into the database """
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -198,7 +202,7 @@ def romeQuiz():
 @app.route("/macedonia_quiz", methods=['GET', 'POST'])
 @login_required
 def macedoniaQuiz():
-
+	""" Route the user to the Macedonia quiz page or if they submit a quiz it will input the results into the database """
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -222,7 +226,7 @@ def macedoniaQuiz():
 @app.route("/egypt_quiz", methods=['GET', 'POST'])
 @login_required
 def egyptQuiz():
-
+	""" Route the user to the Egypt quiz page or if they submit a quiz it will input the results into the database """
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -246,6 +250,7 @@ def egyptQuiz():
 @app.route("/complete_rome", methods=['GET', 'POST'])
 @login_required
 def romeComplete():
+	""" Route the user to their score for all the Rome quizzes they have done by pulling the users information from the database """
 
 	if "username" in session:
 		user = session["username"]
@@ -254,12 +259,8 @@ def romeComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM rome WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	#for row in data:
-		#print(row[0])
-		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_rome.html", data = data, user = user)
@@ -267,6 +268,7 @@ def romeComplete():
 @app.route("/complete_macedonia", methods=['GET', 'POST'])
 @login_required
 def macedoniaComplete():
+	""" Route the user to their score for all the Macedonia quizzes they have done by pulling the users information from the database """
 
 	if "username" in session:
 		user = session["username"]
@@ -275,12 +277,8 @@ def macedoniaComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM macedonia WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	#for row in data:
-		#print(row[0])
-		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_macedonia.html", data = data, user = user)
@@ -288,6 +286,7 @@ def macedoniaComplete():
 @app.route("/complete_egypt", methods=['GET', 'POST'])
 @login_required
 def egyptComplete():
+	""" Route the user to their score for all the Egypt quizzes they have done by pulling the users information from the database """
 
 	if "username" in session:
 		user = session["username"]
@@ -296,12 +295,8 @@ def egyptComplete():
 
 	g.db = connect_db()
 	ID = session["id"]
-	#print(ID)
 	cur = g.db.execute('SELECT score, dateDone FROM egypt WHERE userID =' + str(ID) + ' ORDER BY score DESC, dateDone DESC;')
 	data = cur.fetchall()
-	#for row in data:
-		#print(row[0])
-		#print(row[1])
 	g.db.close()
 
 	return render_template("complete_egypt.html", data = data, user = user)
@@ -310,19 +305,21 @@ def egyptComplete():
 @app.route("/loading/<quiz>")
 @login_required
 def loading(quiz):
+	""" Renders the grading screen which will take them to the correct quiz score screen """
 
 	if "username" in session:
 		user = session["username"]
 	else:
 		user = None
 
-	#print(quiz)
-
 	return render_template("loading.html", user = user , quiz = url_for(quiz, _external = True))
 
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+	""" If the user access this page through a GET request it will load the form for them to fill out
+		otherwise if they submit the form it will check the database for users with the same
+		 username and email before adding them to the database and redirecting them to the temp login screen  """
 
 	if "username" in session:
 		user = session["username"]
@@ -332,6 +329,7 @@ def register():
 	error = None
 
 	if request.method == 'POST':
+		# Gather data
 		firstname = request.form['firstname']
 		lastname = request.form['lastname']
 		email = request.form['email']
@@ -345,42 +343,25 @@ def register():
 		testUser = False
 		testEmail = False
 
+		# Checks the database for users with the same name
 		for row in data:
-			#print(row[1])
-			#print(row[2])
 			if row[1] == username:
 				g.db.close()
-				#print("Username:" + str(row[1]))
 				error = 'Username already used'
 				testUser = True
 				return render_template("register.html", error = error, user = user)
 			elif row[2] == email:
 				g.db.close()
-				#print(row[2])
 				error = 'Email alreaddy in use'
 				testEmail = True
 				return render_template("register.html", error = error, user = user)
 			
 		if testEmail == False and testUser == False:
+			# Enter information into the database
 			g.db.execute('INSERT INTO users (firstname, lastname, email, username, password) VALUES (?,?,?,?,?);', \
 			(firstname, lastname, email, username, password))
 			g.db.commit()
 			g.db.close()
-
-			# g.db = connect_db()
-			# cur = g.db.execute('SELECT id FROM users WHERE email =' + email + ';')
-			# data = cur.fetchall()
-			# session['ID'] = data[0]
-			# g.db.close()
-
-
-			# token = generate_confirmation_token(email)
-			# confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
-			# html = render_template('/confirmEmail.html', confirm_url=confirm_url)
-			# subject = "Please confirm your email"
-			# send_email(email, subject, html)
-
-			# error = "You have Successfuly Registered, now confirm your address before logging in"
 
 			return redirect(url_for('tempLogin', username = username, error = error))
 
@@ -389,6 +370,7 @@ def register():
 
 @app.route('/confirm/<token>')
 def confirm(token):
+	""" Generates page for the user to confirm their email """
 	try:
 		email = confirm_token(token)
 	except:
@@ -397,7 +379,8 @@ def confirm(token):
 	
 	g.db = connect_db()
 	ID = session["id"]
-	#print(ID)
+
+	#Update database to confirm the user
 	cur = g.db.execute('UPDATE users SET confirmed = (?) WHERE id =' + str(ID) + ';', (1,) )
 	g.db.commit()
 	g.db.close()
@@ -405,29 +388,10 @@ def confirm(token):
 	return redirect(url_for('login'))
 
 
-# @app.route('/special/<username>')
-# def special(username):
-# 	return autoLog(username)
-
-
-# def autoLog(username):
-# 			print(username)
-# 			g.db = connect_db()
-# 			cur = g.db.execute('SELECT id, username FROM users WHERE username = "Paddy345";')
-# 			dataSecond = cur.fetchall()
-# 			session["logged_in"] = True
-# 			for record in dataSecond:
-# 				session["id"] = record[0]
-# 				session["username"] = record[1]
-			
-# 			print(session["id"])
-
-# 			return redirect(url_for('home'))
-
-
 @app.route('/delete', methods=['GET', 'POST'])
 @login_required
 def delete():
+	""" Function used to remove the user from the database """
 	if request.method == 'POST':
 		g.db = connect_db()
 		ID = int(session["id"])
@@ -439,6 +403,9 @@ def delete():
 @app.route('/myProfile', methods=['GET', 'POST'])
 @login_required
 def myProfile():
+	""" Renders template displaying the users information, if a submission is registered it will check the username and email
+	    for changes. If neither changed user data will be updated, if user name changed there will be a check it is not in use, 
+	     if email changed a new confirmation email is sent and verified is changed to unverified"""
 
 	if "username" in session:
 		user = session["username"]
@@ -446,7 +413,7 @@ def myProfile():
 		user = None
 
 	if request.method == 'POST':
-
+		#Gather data
 		firstname = request.form['firstname']
 		lastname = request.form['lastname']
 		email = request.form['email']
@@ -460,12 +427,10 @@ def myProfile():
 		testUser = False
 		testEmail = False
 
+		#Check username and email aren't in use by someone else
 		for row in data:
-			#print(row[1])
-			#print(row[2])
 			if row[1] == username:
 				g.db.close()
-				#print("Username:" + str(row[1]))
 				error = 'Username already used'
 				testUser = True
 				if row[0] == session["id"]:
@@ -476,7 +441,6 @@ def myProfile():
 						username = username, password = password, user = user, error = error)
 			elif row[2] == email:
 				g.db.close()
-				#print(row[2])
 				error = 'Email alreaddy in use'
 				testEmail = True
 				if row[0] == session["id"]:
@@ -487,16 +451,15 @@ def myProfile():
 						username = username, password = password, user = user, error = error)
 			
 		if testEmail == False and testUser == False:
+			#Update the database with the new information
 			g.db = connect_db()
 			ID = int(session["id"])
-			#oldEmail
-			#ID = 8
-			#print(ID)
 			cur = g.db.execute('SELECT email FROM users WHERE id =' + str(ID) + ';')
 			data = cur.fetchall()
 			for row in data:
 				oldEmail = row[0]
 			if oldEmail != email:
+				#If email has been changed and not in use a new confirmation email is sent
 				token = generate_confirmation_token(email)
 				confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
 				html = render_template('/confirmEmail.html', confirm_url=confirm_url)
@@ -505,7 +468,6 @@ def myProfile():
 				cur = g.db.execute('UPDATE users SET confirmed = (?) WHERE id =' + str(ID) + ';', (0,) )
 				g.db.commit()
 				error = "Please Confirm Email"
-				# g.db.close()
 
 			cur = g.db.execute('UPDATE users SET firstname = (?), lastname = (?), email = (?), username = (?), password = (?) WHERE id =' + str(ID) + ';', \
 			(firstname, lastname, email, username, password) )
@@ -516,9 +478,9 @@ def myProfile():
 				username = username, password = password, user = user, error = error)
 
 	else:
+		#Output user information
 		g.db = connect_db()
 		ID = session["id"]
-		#print(ID)
 		cur = g.db.execute('SELECT firstname, lastname, email, username, password FROM users WHERE id = ' + str(ID) + ';')
 		data = cur.fetchall()
 
@@ -532,10 +494,10 @@ def myProfile():
 		return render_template("myProfile.html", firstname = firstname, lastname = lastname, email = email, \
 		 username = username, password = password, user = user)
 
-#CREATE TEMP LOGIN
 
 @app.route('/confirm_email')
 def confirmEmail():
+	""" Render page asking the user to confirm their email """
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -550,6 +512,7 @@ def confirmEmail():
 
 @app.route('/temp_login', methods=['GET','POST'])
 def tempLogin():
+	""" This function will have the user enter their login information so as to know who to send the confirmation email to """
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -560,27 +523,24 @@ def tempLogin():
 	error = "Please login so we can send you a confirmation email"
 	if request.method == 'POST':
 		user = request.form['username']
-		#print(user)
 		password = request.form['password']
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
 		data = cur.fetchall()
+		#Check the login information is correct
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				#print(user)
 				if row[2] == password:
 					g.db.close()
-					#session["logged_in"] = True
 					session["id"] = row[0]
-					#session["username"] = row[1]
 					if row[3] == 0:
+						#If information is correct send confirmation email
 						token = generate_confirmation_token(email)
 						confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
 						html = render_template('/confirmEmail.html', confirm_url=confirm_url)
 						subject = "Please confirm your email"
 						send_email(email, subject, html)
-						#redirect(url_for('home'))
 						return redirect(url_for('confirmEmail'))
 					else:
 						return redirect(url_for('home'))
@@ -598,6 +558,8 @@ def tempLogin():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+	""" Render page for the user to login """
+
 	if "username" in session:
 		user = session["username"]
 	else:
@@ -606,26 +568,19 @@ def login():
 	error = None
 	if request.method == 'POST':
 		user = request.form['username']
-		#print(user)
 		password = request.form['password']
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
 		data = cur.fetchall()
+		#Check the login information is correct
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				#print(user)
 				if row[2] == password:
 					g.db.close()
 					session["id"] = row[0]
 					if row[3] == 0:
-						#print("Hello")
-						# token = generate_confirmation_token(email)
-						# confirm_url = url_for('confirm', token = token, _external=True)#External forces it to display full address
-						# html = render_template('/confirmEmail.html', confirm_url=confirm_url)
-						# subject = "Please confirm your email"
-						# send_email(email, subject, html)
-						# redirect(url_for('home'))
+						#if the user is not verified it will redirect them to the temp login
 						error = "Please login here so we can send you a confirmation email"
 						return redirect(url_for('tempLogin', error = error))
 					else:
@@ -646,13 +601,65 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+	""" Allow the user to logout """
 	session.pop("logged_in", None)
 	session.pop("id", None)
 	session.pop("username", None)
 
 	return redirect(url_for('home'))
 
+@app.route('/au')
+def au():
+	""" Renders about us page """
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+	error = None
+	return render_template('about_us.html', error=error, user = user)
+
+@app.route('/pcp')
+def pcp():
+	""" Renders privacy and cookie policy page """
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+	error = None
+	return render_template('privacy_and_cookie_policy.html', error=error, user = user)
+
+@app.route('/tu')
+def tu():
+	""" Renders terms of use page """
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+	error = None
+	return render_template('terms_of_use.html', error=error, user = user)
+
+@app.route('/sm')
+def sm():
+	""" Renders site map page """
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+	error = None
+	return render_template('site_map.html', error=error, user = user)
+
+@app.route('/cu')
+def cu():
+	""" Renders contact us page """
+	if "username" in session:
+		user = session["username"]
+	else:
+		user = None
+	error = None
+	return render_template('contact_us.html', error=error, user = user)
+
 def connect_db():
+	""" Make a connection to the database """
 	return sqlite3.connect(app.database)
 
 if __name__ == "__main__":

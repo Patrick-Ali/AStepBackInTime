@@ -1,5 +1,7 @@
 {% extends "template.html" %}
 
+{% block title %}{{ super() }}{{ user }}{% endblock %}
+
 {% block page %}{{ user }} Profile{% endblock %}
 {% block heading %}
   {{ super() }}

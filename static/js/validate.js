@@ -1,4 +1,5 @@
 function validate(){
+	// When the user submits either a registration or update form this function will be executed to validate it
 
 	var forename = document.getElementById("forename");
 	var surname = document.getElementById("surname");
@@ -12,7 +13,7 @@ function validate(){
 	console.log("Hello");
 
 	for(var i = 0; i<user.length; i++){
-		console.log("Hello2");
+		// Check that none of the fields are empty
 		if(user[i].value == "" || user[i].value == " "){
 			alert("You have left the " + user[i] + " blank");
 			document.register.user[i].focus();
@@ -30,15 +31,13 @@ function validate(){
 	var format = /^[a-zA-Z]{1,}$/;
 
 	if(!String(forename).match(format)){
-		//console.log("Hello3");
-		alert("The forename field msut contain only characters of the alphabet, e.g. a or A");
+		alert("The forename field must contain only characters of the alphabet, e.g. a or A");
 		document.register.forename.focus();
 		return false;
 	}
 
 	if(!String(surname).match(format)){
-		//console.log("Hello4");
-		alert("The surname field msut contain only characters of the alphabet, e.g. a or A ");
+		alert("The surname field must contain only characters of the alphabet, e.g. a or A ");
 		document.register.surname.focus();
 		return false;
 	}
@@ -46,7 +45,6 @@ function validate(){
 	eformat = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
 
 	if(!String(email).match(eformat)){
-		//console.log("Hello5");
 		alert("The email field does not match an email format");
 		document.register.email.focus();
 		return false;
@@ -55,8 +53,7 @@ function validate(){
 	uformat = /^[a-zA-Z0-9]{5,}$/;
 
 	if(!String(username).match(uformat)){
-		//console.log("Hello6");
-		alert("The username field msut be at least 5 characters long and contain a lower and upercase letter");
+		alert("The username field must be at least 5 characters long and contain a lower and upercase letter");
 		document.register.username.focus();
 		return false;
 	}
@@ -64,35 +61,31 @@ function validate(){
 	var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
 	if(!String(password).match(strongRegex)){
-		//console.log("Hello7");
-		alert("The password field msut contain be 8 characters long at minimum, contain at least 1 lower case letter, 1 upper case letter, 1 number \
+		alert("The password field must contain be 8 characters long at minimum, contain at least 1 lower case letter, 1 upper case letter, 1 number \
 		and 1 special character.");
 		document.register.password.focus();
 		return false;
 	}
 
 	if(password != confirm){
-		//console.log("Hello8");
 		alert("The confirm field does not match the password field");
 		document.register.confirm.focus();
 		return false;
 	}
 
-	///[^a-zA-Z]+$/
-
 	return true;
 }
 
 function forenameValidate(){
+	// When the user enters information into the forename field in either the registration or update form this function will be executed to validate it
 
 	var format = /^[a-zA-Z]{1,}$/;
 
 	var forname = document.getElementById("forename").value;
 
 	if(!String(forname).match(format)){
-		document.getElementById('forError').innerHTML="The forename field msut contain only characters of the alphabet, e.g. a or A";
+		document.getElementById('forError').innerHTML="The forename field must contain only characters of the alphabet, e.g. a or A";
 		document.getElementById('forError').style.color = "red";
-		//document.getElementById('forError').style.fontSize = "0.8em";
 		document.getElementById('forError').style.textAlign = "center";
 	}
 	else{
@@ -104,15 +97,15 @@ function forenameValidate(){
 }
 
 function surnameValidate(){
+	// When the user enters information into the surname field in either the registration or update form this function will be executed to validate it
 
 	var format = /^[a-zA-Z]{1,}$/;
 
 	var surname = document.getElementById("surname").value;
 
 	if(!String(surname).match(format)){
-		document.getElementById('surError').innerHTML="The surname field msut contain only characters of the alphabet, e.g. a or A";
+		document.getElementById('surError').innerHTML="The surname field must contain only characters of the alphabet, e.g. a or A";
 		document.getElementById('surError').style.color = "red";
-		//document.getElementById('forError').style.fontSize = "0.8em";
 		document.getElementById('surError').style.textAlign = "center";
 	}
 	else{
@@ -124,6 +117,7 @@ function surnameValidate(){
 }
 
 function emailValidate(){
+	// When the user enters information into the email field in either the registration or update form this function will be executed to validate it
 
 	var eformat = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
 
@@ -142,15 +136,15 @@ function emailValidate(){
 }
 
 function usernameValidate(){
+	// When the user enters information into the username field in either the registration or update form this function will be executed to validate it
 
 	var format = /^[a-zA-Z0-9]{5,}$/;
 
 	var username = document.getElementById("username").value;
 
 	if(!String(username).match(format)){
-		document.getElementById('userError').innerHTML="The username field msut be at least 5 characters long and contain a lower and upercase letter";
+		document.getElementById('userError').innerHTML="The username field must be at least 5 characters long and contain a lower and upercase letter";
 		document.getElementById('userError').style.color = "red";
-		//document.getElementById('forError').style.fontSize = "0.8em";
 		document.getElementById('userError').style.textAlign = "center";
 	}
 	else{
@@ -162,13 +156,14 @@ function usernameValidate(){
 }
 
 function passwordValidate(){
+	// When the user enters information into the password field in either the registration or update form this function will be executed to validate it
 
 	var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
 	var password = document.getElementById("password").value;
 
 	if(!String(password).match(strongRegex)){
-		document.getElementById('paError').innerHTML="The password field msut contain be 8 characters long at minimum, contain at least 1 lower case letter, 1 upper case letter, 1 number \
+		document.getElementById('paError').innerHTML="The password field must contain be 8 characters long at minimum, contain at least 1 lower case letter, 1 upper case letter, 1 number \
 		and 1 special character.";
 		document.getElementById('paError').style.color = "red";
 		document.getElementById('paError').style.fontSize = "0.8em";
@@ -182,12 +177,12 @@ function passwordValidate(){
 }
 
 function confirmValidate(){
+	// When the user enters information into the confirm password field in either the registration or update form this function will be executed to validate it
 
 	var password = document.getElementById("password").value;
 	var confirm = document.getElementById("confirm").value;
 
 	if(password != confirm){
-		console.log("Hello")
 		document.getElementById('conError').innerHTML="The confirm field does not match the password field";
 		document.getElementById('conError').style.color = "red";
 		document.getElementById('conError').style.textAlign = "center";
@@ -201,9 +196,9 @@ function confirmValidate(){
 }
 
 function confirmDelete(){
-	return confirm("Please confirm you wish to delete this profile, this action is permanet");
+	return confirm("Please confirm you wish to delete this profile, this action is permanent");
 }
 
 function confirmUpdate(){
-	return confirm("Please confirm you wish to update this profile, this action is permanet");
+	return confirm("Please confirm you wish to update this profile, this action is permanent");
 }

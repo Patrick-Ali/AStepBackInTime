@@ -1,5 +1,7 @@
 {% extends "template.html" %}
 
+{% block title %}{{ super() }}EgyptQuiz{% endblock %}
+
 {% block page %}Egypt Quiz{% endblock %}
 {% block heading %}
   {{ super() }}
@@ -9,54 +11,54 @@
 {% block content %}
 	
 				<form method="post" onsubmit="return(eqyptCheck());">
-				{{ form.hidden_tag() }}
-				<input type="hidden" name="score" id="score" value=0>
-				<div class="form-group">
-				<div class="radio">
-				{{ form.q1.label }}<br>
-				{{ form.q1 }}
-				<br>
-				</div>
-				<div class="radio">
-				{{ form.q2.label }}<br>
-				{{ form.q2 }}
-				<br>
-				</div>
-				<div class="checkbox">
-				{{ form.q3.label }}<br>
-				{{ form.q3 }}
-				<br>
-				</div>
-				{{ form.q4.label }}<br>
-				{{ form.q4 (class="form-control") }}
-				<br>
-				<div class="radio">
-				{{ form.q5.label }}<br>
-				{{ form.q5 }}
-				<br>
-				</div>
-				<div class="radio">
-				{{ form.q6.label }}<br>
-				{{ form.q6 }}
-				<br>
-				</div>
-				{{ form.q7.label }}<br>
-				{{ form.q7 (class="form-control") }}
-				<br>
-				<div class="checkbox">
-				{{ form.q8.label }}<br>
-				{{ form.q8 }}
-				<br>
-				</div>
-				{{ form.q9.label }}<br>
-				{{ form.q9 (class="form-control") }}
-				<br>
-				{{ form.q10.label }}<br>
-				{{ form.q10 (class="form-control") }}
-				<br>
-				{{form.submit (class="btn btn-default") }}
-				</div>
-					</form>
+					{{ form.hidden_tag() }}
+					<input type="hidden" name="score" id="score" value=0>
+					<div class="form-group">
+					<div class="radio">
+					{{ form.q1.label }}<br>
+					{{ form.q1 }}
+					<br>
+					</div>
+					<div class="radio">
+					{{ form.q2.label }}<br>
+					{{ form.q2 }}
+					<br>
+					</div>
+					<div class="checkbox">
+					{{ form.q3.label }}<br>
+					{{ form.q3 }}
+					<br>
+					</div>
+					{{ form.q4.label }}<br>
+					{{ form.q4 (class="form-control") }}
+					<br>
+					<div class="radio">
+					{{ form.q5.label }}<br>
+					{{ form.q5 }}
+					<br>
+					</div>
+					<div class="radio">
+					{{ form.q6.label }}<br>
+					{{ form.q6 }}
+					<br>
+					</div>
+					{{ form.q7.label }}<br>
+					{{ form.q7 (class="form-control") }}
+					<br>
+					<div class="checkbox">
+					{{ form.q8.label }}<br>
+					{{ form.q8 }}
+					<br>
+					</div>
+					{{ form.q9.label }}<br>
+					{{ form.q9 (class="form-control") }}
+					<br>
+					{{ form.q10.label }}<br>
+					{{ form.q10 (class="form-control") }}
+					<br>
+					{{form.submit (class="btn btn-default") }}
+					</div>
+				</form>
 
  <script type="text/javascript" src="{{ url_for('static', filename='js/egyptCheck.js')}}"> </script>
 

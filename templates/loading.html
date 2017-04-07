@@ -1,5 +1,7 @@
 {% extends "template.html" %}
 
+{% block title %}{{ super() }}Loading{% endblock %}
+
 {% block page %}Grading.{% endblock %}
 {% block heading %}
   {{ super() }}
@@ -19,28 +21,25 @@
 
 <script>    
     window.onload= function upload(){
+      //Increase the progress bars width every second to simulate 'Grading'
       var width = 1;
       var c = document.getElementById("progress");
-      //console.log(c);
       var speed = 100;
       var id = setInterval(function(){frame(c)},speed);
       function frame(c) {
+        //Increase the loading bars width till it reaches 100
         if(width == 100){
           var url = document.getElementById("url").value;
           console.log(url);
-          window.location.href = url;//"http://127.0.0.1:5000/rome_quiz";
+          window.location.href = url;
         }
         else{
           changeTitle();
           width++;
-          //console.log(width);
           c.style.width = width + '%';
-          //var temp =  document.getElementById("progress");
           var v = c.getAttribute("aria-valuenow");
-          v = parseInt(v);  
-          //console.log(v); 
+          v = parseInt(v);   
           v += 1;
-          //console.log(v);
           v = v.toString();
           c.innerHTML = v + "%";  
           c.setAttribute("aria-valuenow", v);
@@ -49,7 +48,7 @@
         }
 
         function changeTitle(){
-          console.log("Hello");
+          // Update the title every time the bar loads to simulate 'Grading'
           var title = document.getElementById("mainTitle").innerHTML;
           if(title == "Grading."){
             document.getElementById("mainTitle").innerHTML = "Grading.."; 

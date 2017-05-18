@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, session, f
 from flask_bootstrap import Bootstrap
 from functools import wraps
 import sqlite3
+from flask.ext.bcrypt import Bcrypt
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
 from flask_wtf import Form
@@ -67,9 +68,11 @@ app = Flask(__name__)
 app.secret_key = "yINaP31znTy8Uhq51?9cQD4u]0E0.E"
 app.SECURITY_PASSWORD_HASH = "sha512_crypt"
 app.SECURITY_PASSWORD_SALT = "xEjV.c8)!J30PF8X9ul0SwWk;|(4,7"
-app.database = "database/website.db"
+app.database = "/home/CoventryUniversityNavigations/mysite/database/website.db"
 
 Bootstrap(app)
+
+bcrypt = Bcrypt(app)
 
 app.config.update(
 	DEBUG=True,
@@ -105,7 +108,7 @@ def login_required(f):
 
 def generate_confirmation_token(email): #Generates random string for conformation
     serializer = URLSafeTimedSerializer(app.secret_key)
-    return serializer.dumps(email, salt=app.SECURITY_PASSWORD_SALT) 
+    return serializer.dumps(email, salt=app.SECURITY_PASSWORD_SALT)
 
 
 def confirm_token(token, expiration=3600):#Gives the token a time to live, currently one hour
@@ -146,7 +149,7 @@ def quiz():
 		user = session["username"]
 		return render_template("quiz.html", user = user)
 	else:
-		return render_template("quiz.html", user = None) 
+		return render_template("quiz.html", user = None)
 
 @app.route("/rome")
 def rome():
@@ -245,7 +248,7 @@ def egyptQuiz():
 
 		return redirect(url_for("loading", quiz = 'egyptComplete'))
 	else:
-		return render_template("egypt_quiz.html", form = form, user = user)		
+		return render_template("egypt_quiz.html", form = form, user = user)
 
 @app.route("/complete_rome", methods=['GET', 'POST'])
 @login_required
@@ -300,7 +303,7 @@ def egyptComplete():
 	g.db.close()
 
 	return render_template("complete_egypt.html", data = data, user = user)
-	
+
 
 @app.route("/loading/<quiz>")
 @login_required
@@ -355,11 +358,12 @@ def register():
 				error = 'Email alreaddy in use'
 				testEmail = True
 				return render_template("register.html", error = error, user = user)
-			
+
 		if testEmail == False and testUser == False:
 			# Enter information into the database
+			hashPass = bcrypt.generate_password_hash(password).decode("utf-8")
 			g.db.execute('INSERT INTO users (firstname, lastname, email, username, password) VALUES (?,?,?,?,?);', \
-			(firstname, lastname, email, username, password))
+			(firstname, lastname, email, username, hashPass))
 			g.db.commit()
 			g.db.close()
 
@@ -376,7 +380,7 @@ def confirm(token):
 	except:
 		error = "Something went wrong with the email"
 		return redirect(url_for('login', error = error))
-	
+
 	g.db = connect_db()
 	ID = session["id"]
 
@@ -404,7 +408,7 @@ def delete():
 @login_required
 def myProfile():
 	""" Renders template displaying the users information, if a submission is registered it will check the username and email
-	    for changes. If neither changed user data will be updated, if user name changed there will be a check it is not in use, 
+	    for changes. If neither changed user data will be updated, if user name changed there will be a check it is not in use,
 	     if email changed a new confirmation email is sent and verified is changed to unverified"""
 
 	if "username" in session:
@@ -449,9 +453,10 @@ def myProfile():
 				else:
 					return render_template("myProfile.html", firstname = firstname, lastname = lastname, email = email, \
 						username = username, password = password, user = user, error = error)
-			
+
 		if testEmail == False and testUser == False:
 			#Update the database with the new information
+			hashPass = bcrypt.generate_password_hash(password).decode("utf-8")
 			g.db = connect_db()
 			ID = int(session["id"])
 			cur = g.db.execute('SELECT email FROM users WHERE id =' + str(ID) + ';')
@@ -470,7 +475,7 @@ def myProfile():
 				error = "Please Confirm Email"
 
 			cur = g.db.execute('UPDATE users SET firstname = (?), lastname = (?), email = (?), username = (?), password = (?) WHERE id =' + str(ID) + ';', \
-			(firstname, lastname, email, username, password) )
+			(firstname, lastname, email, username, hashPass) )
 			g.db.commit()
 			g.db.close()
 
@@ -524,6 +529,7 @@ def tempLogin():
 	if request.method == 'POST':
 		user = request.form['username']
 		password = request.form['password']
+		#hashPass = bcrypt.generate_password_hash(password).decode("utf-8")
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
 		data = cur.fetchall()
@@ -531,7 +537,7 @@ def tempLogin():
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				if row[2] == password:
+				if bcrypt.check_password_hash(row[2], password):
 					g.db.close()
 					session["id"] = row[0]
 					if row[3] == 0:
@@ -569,6 +575,7 @@ def login():
 	if request.method == 'POST':
 		user = request.form['username']
 		password = request.form['password']
+		hashPass = bcrypt.generate_password_hash(password).decode("utf-8")
 		g.db = connect_db()
 		cur = g.db.execute('SELECT id, username, password, confirmed, email FROM users')
 		data = cur.fetchall()
@@ -576,7 +583,7 @@ def login():
 		for row in data:
 			email = row[4]
 			if row[1] == user:
-				if row[2] == password:
+				if bcrypt.check_password_hash(row[2], password):
 					g.db.close()
 					session["id"] = row[0]
 					if row[3] == 0:
